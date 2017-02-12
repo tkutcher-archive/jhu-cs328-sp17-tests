@@ -1,0 +1,3 @@
+ThisCommentIsOk;
+3*(***Hello(*TEST*)*(*(**)*)	 !
+invalid okay inside comment ()***)2=6;

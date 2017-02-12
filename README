@@ -3,3 +3,12 @@ Test cases for cs328 Spring 17
 
 in_1.txt is the input file.
 to diff scanner with Tim's output diff with out_1_s.txt
+
+same with in_2.txt - this one tests edge cases for a valid
+comment.
+
+the invalid files all have things in them that the scanner
+should recognize as an error.
+
+In general, the '_s' part of a file means it is only relevant
+to testing the scanner.
