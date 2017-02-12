@@ -1,1 +1,5 @@
 Test cases for cs328 Spring 17
+
+
+in_1.txt is the input file.
+to diff scanner with Tim's output diff with out_1_s.txt
