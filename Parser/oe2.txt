@@ -1,0 +1,130 @@
+Program
+  PROGRAM@(0, 6)
+  identifier<flowCtrl>@(8, 15)
+  ;@(16, 16)
+  Declarations
+  BEGIN@(18, 22)
+  Instructions
+    Instruction
+      Write
+        WRITE@(25, 29)
+        Expression
+          Term
+            Factor
+              integer<3>@(31, 31)
+    ;@(32, 32)
+    Instruction
+      WHILE
+        WHILE@(35, 39)
+        Condition
+          Expression
+            Term
+              Factor
+                integer<3>@(41, 41)
+          >@(43, 43)
+          Expression
+            Term
+              Factor
+                integer<4>@(45, 45)
+        DO@(47, 48)
+        Instructions
+          Instruction
+            Write
+              WRITE@(51, 55)
+              Expression
+                Term
+                  Factor
+                    integer<4>@(57, 57)
+          ;@(58, 58)
+          Instruction
+            Write
+              WRITE@(61, 65)
+              Expression
+                Term
+                  Factor
+                    integer<6>@(67, 67)
+        END@(69, 71)
+    ;@(72, 72)
+    Instruction
+      Repeat
+        REPEAT@(75, 80)
+        Instructions
+          Instruction
+            Write
+              WRITE@(83, 87)
+              Expression
+                Term
+                  Factor
+                    integer<5>@(89, 89)
+          ;@(90, 90)
+          Instruction
+            Write
+              WRITE@(93, 97)
+              Expression
+                Term
+                  Factor
+                    integer<7>@(99, 99)
+        UNTIL@(101, 105)
+        Condition
+          Expression
+            Term
+              Factor
+                integer<5>@(107, 107)
+          <@(109, 109)
+          Expression
+            Term
+              Factor
+                integer<6>@(111, 111)
+        END@(113, 115)
+    ;@(116, 116)
+    Instruction
+      If
+        IF@(119, 120)
+        Condition
+          Expression
+            Term
+              Factor
+                integer<5>@(122, 122)
+          <@(124, 124)
+          Expression
+            Term
+              Factor
+                integer<6>@(126, 126)
+        THEN@(128, 131)
+        Instructions
+          Instruction
+            Write
+              WRITE@(134, 138)
+              Expression
+                Term
+                  Factor
+                    integer<5>@(140, 140)
+          ;@(141, 141)
+          Instruction
+            Write
+              WRITE@(144, 148)
+              Expression
+                Term
+                  Factor
+                    integer<6>@(150, 150)
+        ELSE@(152, 155)
+        Instructions
+          Instruction
+            Write
+              WRITE@(158, 162)
+              Expression
+                Term
+                  Factor
+                    integer<6>@(164, 164)
+          ;@(165, 165)
+          Instruction
+            Write
+              WRITE@(168, 172)
+              Expression
+                Term
+                  Factor
+                    integer<8>@(174, 174)
+        END@(176, 178)
+  END@(181, 183)
+  identifier<stuff>@(185, 189)
+  .@(191, 191)

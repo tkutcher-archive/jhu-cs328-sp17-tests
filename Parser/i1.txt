@@ -1,0 +1,5 @@
+PROGRAM constStuff ;
+CONST a = 3 * 5 * 12 DIV 5 * 2;
+CONST b = 4 - 6 DIV 8;
+CONST c = 3*(5-8)-12 MOD 2;
+END stuff .

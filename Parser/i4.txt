@@ -1,0 +1,5 @@
+PROGRAM test;
+
+CONST var1 = -50 + 35 - 22 DIV 3 MOD 5; var2 = 35; var3 = 65;
+CONST var3 = 6;
+VAR var4, var5, var6: RECORD var7: RECORD var8: ARRAY 5 OF T; END; END;

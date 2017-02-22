@@ -1,0 +1,20 @@
+PROGRAM flowCtrl;
+CONST asdf = 3 * 5 * (6-7) DIV 8;
+TYPE
+
+VAR asdf, asdf, asdf : ARRAY 3 OF stuff;
+TYPE asdf = RECORD END;
+TYPE asdf = RECORD asdf : asdf; END;
+
+BEGIN
+
+asdf := 5;
+asdf [asdf, asdf] := 7;
+asdf.asdf := 98;
+READ asdf [123, 4*5 DIV 6]
+
+END stuff .
+CONST a = 3 * 5;
+CONST b = 4 - 6 DIV 8;
+CONST c = 3*(5-8)-12 MOD 2;
+END stuff .

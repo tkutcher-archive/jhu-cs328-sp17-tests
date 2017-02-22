@@ -1,0 +1,155 @@
+Program
+  PROGRAM@(0, 6)
+  identifier<flowCtrl>@(8, 15)
+  ;@(16, 16)
+  Declarations
+    ConstDecl
+      CONST@(18, 22)
+      identifier<asdf>@(24, 27)
+      =@(29, 29)
+      Expression
+        Term
+          Factor
+            integer<3>@(31, 31)
+          *@(33, 33)
+          Factor
+            integer<5>@(35, 35)
+          *@(37, 37)
+          Factor
+            (@(39, 39)
+            Expression
+              Term
+                Factor
+                  integer<6>@(40, 40)
+              -@(41, 41)
+              Term
+                Factor
+                  integer<7>@(42, 42)
+            )@(43, 43)
+          DIV@(45, 47)
+          Factor
+            integer<8>@(49, 49)
+      ;@(50, 50)
+    TypeDecl
+      TYPE@(52, 55)
+    VarDecl
+      VAR@(58, 60)
+      IdentifierList
+        identifier<asdf>@(62, 65)
+        ,@(66, 66)
+        identifier<asdf>@(68, 71)
+        ,@(72, 72)
+        identifier<asdf>@(74, 77)
+      :@(79, 79)
+      Type
+        ARRAY@(81, 85)
+        Expression
+          Term
+            Factor
+              integer<3>@(87, 87)
+        OF@(89, 90)
+        Type
+          identifier<stuff>@(92, 96)
+      ;@(97, 97)
+    TypeDecl
+      TYPE@(99, 102)
+      identifier<asdf>@(104, 107)
+      =@(109, 109)
+      Type
+        RECORD@(111, 116)
+        END@(118, 120)
+      ;@(121, 121)
+    TypeDecl
+      TYPE@(123, 126)
+      identifier<asdf>@(128, 131)
+      =@(133, 133)
+      Type
+        RECORD@(135, 140)
+        IdentifierList
+          identifier<asdf>@(142, 145)
+        :@(147, 147)
+        Type
+          identifier<asdf>@(149, 152)
+        ;@(153, 153)
+        END@(155, 157)
+      ;@(158, 158)
+  BEGIN@(161, 165)
+  Instructions
+    Instruction
+      Assign
+        Designator
+          identifier<asdf>@(168, 171)
+          Selector
+        :=@(173, 174)
+        Expression
+          Term
+            Factor
+              integer<5>@(176, 176)
+    ;@(177, 177)
+    Instruction
+      Assign
+        Designator
+          identifier<asdf>@(179, 182)
+          Selector
+            [@(184, 184)
+            ExpressionList
+              Expression
+                Term
+                  Factor
+                    Designator
+                      identifier<asdf>@(185, 188)
+                      Selector
+              ,@(189, 189)
+              Expression
+                Term
+                  Factor
+                    Designator
+                      identifier<asdf>@(191, 194)
+                      Selector
+            ]@(195, 195)
+        :=@(197, 198)
+        Expression
+          Term
+            Factor
+              integer<7>@(200, 200)
+    ;@(201, 201)
+    Instruction
+      Assign
+        Designator
+          identifier<asdf>@(203, 206)
+          Selector
+            .@(207, 207)
+            identifier<asdf>@(208, 211)
+        :=@(213, 214)
+        Expression
+          Term
+            Factor
+              integer<98>@(216, 217)
+    ;@(218, 218)
+    Instruction
+      Read
+        READ@(220, 223)
+        Designator
+          identifier<asdf>@(225, 228)
+          Selector
+            [@(230, 230)
+            ExpressionList
+              Expression
+                Term
+                  Factor
+                    integer<123>@(231, 233)
+              ,@(234, 234)
+              Expression
+                Term
+                  Factor
+                    integer<4>@(236, 236)
+                  *@(237, 237)
+                  Factor
+                    integer<5>@(238, 238)
+                  DIV@(240, 242)
+                  Factor
+                    integer<6>@(244, 244)
+            ]@(245, 245)
+  END@(248, 250)
+  identifier<stuff>@(252, 256)
+  .@(258, 258)

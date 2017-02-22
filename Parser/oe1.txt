@@ -1,0 +1,73 @@
+Program
+  PROGRAM@(0, 6)
+  identifier<constStuff>@(8, 17)
+  ;@(19, 19)
+  Declarations
+    ConstDecl
+      CONST@(21, 25)
+      identifier<a>@(27, 27)
+      =@(29, 29)
+      Expression
+        Term
+          Factor
+            integer<3>@(31, 31)
+          *@(33, 33)
+          Factor
+            integer<5>@(35, 35)
+          *@(37, 37)
+          Factor
+            integer<12>@(39, 40)
+          DIV@(42, 44)
+          Factor
+            integer<5>@(46, 46)
+          *@(48, 48)
+          Factor
+            integer<2>@(50, 50)
+      ;@(51, 51)
+    ConstDecl
+      CONST@(53, 57)
+      identifier<b>@(59, 59)
+      =@(61, 61)
+      Expression
+        Term
+          Factor
+            integer<4>@(63, 63)
+        -@(65, 65)
+        Term
+          Factor
+            integer<6>@(67, 67)
+          DIV@(69, 71)
+          Factor
+            integer<8>@(73, 73)
+      ;@(74, 74)
+    ConstDecl
+      CONST@(76, 80)
+      identifier<c>@(82, 82)
+      =@(84, 84)
+      Expression
+        Term
+          Factor
+            integer<3>@(86, 86)
+          *@(87, 87)
+          Factor
+            (@(88, 88)
+            Expression
+              Term
+                Factor
+                  integer<5>@(89, 89)
+              -@(90, 90)
+              Term
+                Factor
+                  integer<8>@(91, 91)
+            )@(92, 92)
+        -@(93, 93)
+        Term
+          Factor
+            integer<12>@(94, 95)
+          MOD@(97, 99)
+          Factor
+            integer<2>@(101, 101)
+      ;@(102, 102)
+  END@(104, 106)
+  identifier<stuff>@(108, 112)
+  .@(114, 114)
