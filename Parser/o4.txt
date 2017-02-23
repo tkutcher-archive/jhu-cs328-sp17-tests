@@ -1,0 +1,88 @@
+Program
+  PROGRAM@(0, 6)
+  identifier<test>@(8, 11)
+  ;@(12, 12)
+  Declarations
+    ConstDecl
+      CONST@(15, 19)
+      identifier<var1>@(21, 24)
+      =@(26, 26)
+      Expression
+        -@(28, 28)
+        Term
+          Factor
+            integer<50>@(29, 30)
+        +@(32, 32)
+        Term
+          Factor
+            integer<35>@(34, 35)
+        -@(37, 37)
+        Term
+          Factor
+            integer<22>@(39, 40)
+          DIV@(42, 44)
+          Factor
+            integer<3>@(46, 46)
+          MOD@(48, 50)
+          Factor
+            integer<5>@(52, 52)
+      ;@(53, 53)
+      identifier<var2>@(55, 58)
+      =@(60, 60)
+      Expression
+        Term
+          Factor
+            integer<35>@(62, 63)
+      ;@(64, 64)
+      identifier<var3>@(66, 69)
+      =@(71, 71)
+      Expression
+        Term
+          Factor
+            integer<65>@(73, 74)
+      ;@(75, 75)
+    ConstDecl
+      CONST@(77, 81)
+      identifier<var3>@(83, 86)
+      =@(88, 88)
+      Expression
+        Term
+          Factor
+            integer<6>@(90, 90)
+      ;@(91, 91)
+    VarDecl
+      VAR@(93, 95)
+      IdentiferList
+        identifier<var4>@(97, 100)
+        ,@(101, 101)
+        identifier<var5>@(103, 106)
+        ,@(107, 107)
+        identifier<var6>@(109, 112)
+      :@(113, 113)
+      Type
+        RECORD@(115, 120)
+        IdentiferList
+          identifier<var7>@(122, 125)
+        :@(126, 126)
+        Type
+          RECORD@(128, 133)
+          IdentiferList
+            identifier<var8>@(135, 138)
+          :@(139, 139)
+          Type
+            ARRAY@(141, 145)
+            Expression
+              Term
+                Factor
+                  integer<5>@(147, 147)
+            OF@(149, 150)
+            Type
+              identifier<T>@(152, 152)
+          ;@(153, 153)
+          END@(155, 157)
+        ;@(158, 158)
+        END@(160, 162)
+      ;@(163, 163)
+  END@(165, 167)
+  identifier<test>@(169, 172)
+  .@(173, 173)
