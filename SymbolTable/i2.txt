@@ -1,0 +1,14 @@
+PROGRAM Q;
+CONST
+	a = 4;
+	b = 47;
+	X = 2;
+TYPE I = INTEGER;
+A = ARRAY 10 OF ARRAY 3 OF INTEGER;
+VAR i, j: INTEGER;
+
+TYPE X = RECORD
+    a, b: ARRAY 7 OF INTEGER;
+END;
+
+END Q.

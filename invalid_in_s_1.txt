@@ -1,4 +1,0 @@
-WrongBecauseUnclosedComment
-VAR x:=2; (* blah (*bleh*)
-
-*

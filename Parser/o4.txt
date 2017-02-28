@@ -52,7 +52,7 @@ Program
       ;@(91, 91)
     VarDecl
       VAR@(93, 95)
-      IdentiferList
+      IdentifierList
         identifier<var4>@(97, 100)
         ,@(101, 101)
         identifier<var5>@(103, 106)
@@ -61,12 +61,12 @@ Program
       :@(113, 113)
       Type
         RECORD@(115, 120)
-        IdentiferList
+        IdentifierList
           identifier<var7>@(122, 125)
         :@(126, 126)
         Type
           RECORD@(128, 133)
-          IdentiferList
+          IdentifierList
             identifier<var8>@(135, 138)
           :@(139, 139)
           Type
