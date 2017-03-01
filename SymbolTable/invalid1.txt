@@ -1,0 +1,5 @@
+PROGRAM Q;
+CONST
+	a = 47;
+	a = 2;
+END Q.

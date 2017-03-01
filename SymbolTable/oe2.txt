@@ -13,7 +13,7 @@ SCOPE BEGIN
     END ARRAY
   I =>
     INTEGER
-  X =>
+  R =>
     RECORD BEGIN
       SCOPE BEGIN
         a =>
@@ -38,6 +38,13 @@ SCOPE BEGIN
           END VAR
       END SCOPE
     END RECORD
+  X =>
+    CONST BEGIN
+      type:
+        INTEGER
+      value:
+        5
+    END CONST
   a =>
     CONST BEGIN
       type:
