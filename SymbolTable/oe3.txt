@@ -1,8 +1,6 @@
 SCOPE BEGIN
   I =>
     INTEGER
-  INTEGER =>
-    INTEGER
   R =>
     RECORD BEGIN
       SCOPE BEGIN
@@ -26,7 +24,7 @@ SCOPE BEGIN
             type:
               RECORD BEGIN
                 SCOPE BEGIN
-                  s =>
+                  S =>
                     VAR BEGIN
                       type:
                         INTEGER
