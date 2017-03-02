@@ -1,0 +1,21 @@
+
+PROGRAM X;
+TYPE
+	I = INTEGER;
+	INTEGER = I;
+	
+	R = RECORD
+		S: RECORD
+			s: INTEGER;
+		END;
+		a: I;
+		A: ARRAY 10 OF ARRAY 3 OF INTEGER;
+	END;
+
+	T = RECORD
+		c: INTEGER;
+		d: ARRAY 18 OF INTEGER;
+	END;
+END X.
+
+

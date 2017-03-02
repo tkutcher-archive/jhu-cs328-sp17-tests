@@ -1,8 +1,10 @@
 PROGRAM Q;
+(* Invalid because name of program doesn't match *)
+
 CONST
-    a = 4;
-    b = 47;
-    X = 2;
+	a = 4;
+	b = 47;
+	X = 2;
 TYPE I = INTEGER;
 A = ARRAY 10 OF ARRAY 3 OF INTEGER;
 VAR i, j: INTEGER;
@@ -11,4 +13,4 @@ TYPE R = RECORD
     a, b: ARRAY 7 OF INTEGER;
 END;
 
-END Q.
+END q.

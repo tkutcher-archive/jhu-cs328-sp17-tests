@@ -1,0 +1,9 @@
+PROGRAM Q;
+(*Invalid because L is a type not yet declared*)
+
+TYPE L = RECORD
+	X: INTEGER;
+    N: L;
+	END;
+
+END Q.

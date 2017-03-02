@@ -1,0 +1,8 @@
+PROGRAM X;
+TYPE
+	R = RECORD
+		INTEGER: INTEGER;
+		(* This should cause the error, INTEGER no longer a type *)
+		X: INTEGER;
+	END;
+END X.

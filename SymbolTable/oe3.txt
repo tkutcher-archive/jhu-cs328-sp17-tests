@@ -1,0 +1,64 @@
+SCOPE BEGIN
+  I =>
+    INTEGER
+  INTEGER =>
+    INTEGER
+  R =>
+    RECORD BEGIN
+      SCOPE BEGIN
+        A =>
+          VAR BEGIN
+            type:
+              ARRAY BEGIN
+                type:
+                  ARRAY BEGIN
+                    type:
+                      INTEGER
+                    length:
+                      5
+                  END ARRAY
+                length:
+                  5
+              END ARRAY
+          END VAR
+        S =>
+          VAR BEGIN
+            type:
+              RECORD BEGIN
+                SCOPE BEGIN
+                  s =>
+                    VAR BEGIN
+                      type:
+                        INTEGER
+                    END VAR
+                END SCOPE
+              END RECORD
+          END VAR
+        a =>
+          VAR BEGIN
+            type:
+              INTEGER
+          END VAR
+      END SCOPE
+    END RECORD
+  T =>
+    RECORD BEGIN
+      SCOPE BEGIN
+        c =>
+          VAR BEGIN
+            type:
+              INTEGER
+          END VAR
+        d =>
+          VAR BEGIN
+            type:
+              ARRAY BEGIN
+                type:
+                  INTEGER
+                length:
+                  5
+              END ARRAY
+          END VAR
+      END SCOPE
+    END RECORD
+END SCOPE
