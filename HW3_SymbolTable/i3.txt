@@ -1,5 +1,10 @@
 
 PROGRAM X;
+
+CONST
+    m = 4;
+    n = 47;
+
 TYPE
 	I = INTEGER;
 	
@@ -8,13 +13,17 @@ TYPE
 			S: I;
 		END;
 		a: I;
-		A: ARRAY 10 OF ARRAY 3 OF INTEGER;
+		A, B: ARRAY 10 OF ARRAY 3 OF INTEGER;
 	END;
 
 	T = RECORD
 		c: INTEGER;
 		d: ARRAY 18 OF INTEGER;
 	END;
+
+
+VAR i, j: I;
+
 END X.
 
 
