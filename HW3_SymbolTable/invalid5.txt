@@ -1,0 +1,9 @@
+PROGRAM X;
+TYPE
+	X = ARRAY 10 OF INTEGER;
+	R = RECORD
+		X: INTEGER;
+		(* This should cause the error, X no longer a type *)
+		W: X;
+	END;
+END X.
