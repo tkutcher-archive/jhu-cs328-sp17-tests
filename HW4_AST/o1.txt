@@ -1,0 +1,171 @@
+instructions =>
+  Assign:
+  location =>
+    Variable:
+    variable =>
+      VAR BEGIN
+        type:
+          INTEGER
+      END VAR
+  expression =>
+    Number:
+    value =>
+      CONST BEGIN
+        type:
+          INTEGER
+        value:
+          5
+      END CONST
+  If:
+  condition =>
+    Condition (<=):
+    left =>
+      Binary (+):
+      left =>
+        Variable:
+        variable =>
+          VAR BEGIN
+            type:
+              INTEGER
+          END VAR
+      right =>
+        Number:
+        value =>
+          CONST BEGIN
+            type:
+              INTEGER
+            value:
+              1
+          END CONST
+    right =>
+      Number:
+      value =>
+        CONST BEGIN
+          type:
+            INTEGER
+          value:
+            2
+        END CONST
+  instructions true =>
+    Repeat:
+    condition =>
+      Condition (>):
+      left =>
+        Binary (+):
+        left =>
+          Variable:
+          variable =>
+            VAR BEGIN
+              type:
+                INTEGER
+            END VAR
+        right =>
+          Number:
+          value =>
+            CONST BEGIN
+              type:
+                INTEGER
+              value:
+                1
+            END CONST
+      right =>
+        Number:
+        value =>
+          CONST BEGIN
+            type:
+              INTEGER
+            value:
+              2
+          END CONST
+    instructions =>
+      Assign:
+      location =>
+        Field:
+        location =>
+          Index:
+          location =>
+            Index:
+            location =>
+              Variable:
+              variable =>
+                VAR BEGIN
+                  type:
+                    ARRAY BEGIN
+                      type:
+                        ARRAY BEGIN
+                          type:
+                            RECORD BEGIN
+                              SCOPE BEGIN
+                                z =>
+                                  VAR BEGIN
+                                    type:
+                                      INTEGER
+                                  END VAR
+                              END SCOPE
+                            END RECORD
+                          length:
+                            5
+                        END ARRAY
+                      length:
+                        5
+                    END ARRAY
+                END VAR
+            expression =>
+              Number:
+              value =>
+                CONST BEGIN
+                  type:
+                    INTEGER
+                  value:
+                    1
+                END CONST
+          expression =>
+            Number:
+            value =>
+              CONST BEGIN
+                type:
+                  INTEGER
+                value:
+                  2
+              END CONST
+        variable =>
+          Variable:
+          variable =>
+            VAR BEGIN
+              type:
+                INTEGER
+            END VAR
+      expression =>
+        Variable:
+        variable =>
+          VAR BEGIN
+            type:
+              INTEGER
+          END VAR
+      Write:
+      expression =>
+        Number:
+        value =>
+          CONST BEGIN
+            type:
+              INTEGER
+            value:
+              15
+          END CONST
+  Assign:
+  location =>
+    Variable:
+    variable =>
+      VAR BEGIN
+        type:
+          INTEGER
+      END VAR
+  expression =>
+    Number:
+    value =>
+      CONST BEGIN
+        type:
+          INTEGER
+        value:
+          23
+      END CONST
