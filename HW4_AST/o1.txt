@@ -14,7 +14,7 @@ instructions =>
         type:
           INTEGER
         value:
-          5
+          10
       END CONST
   If:
   condition =>
@@ -46,7 +46,7 @@ instructions =>
           value:
             2
         END CONST
-  instructions true =>
+  true =>
     Repeat:
     condition =>
       Condition (>):
@@ -104,10 +104,10 @@ instructions =>
                               END SCOPE
                             END RECORD
                           length:
-                            5
+                            15
                         END ARRAY
                       length:
-                        5
+                        10
                     END ARRAY
                 END VAR
             expression =>
@@ -150,7 +150,7 @@ instructions =>
             type:
               INTEGER
             value:
-              15
+              30
           END CONST
   Assign:
   location =>
