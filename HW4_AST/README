@@ -1,1 +1,5 @@
 ast outputs for hw4
+
+invalid files for checking context conditions, all of those
+should fail with comments in each file for why it should
+fail. Other input files should not fail and should be okay.

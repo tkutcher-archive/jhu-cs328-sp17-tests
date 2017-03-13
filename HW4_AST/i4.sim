@@ -1,0 +1,10 @@
+PROGRAM X;
+CONST
+  sz = 47;
+TYPE arr = ARRAY sz OF INTEGER;
+VAR
+  a: arr;
+  b: arr;
+BEGIN
+  a := b
+END X.

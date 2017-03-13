@@ -1,0 +1,6 @@
+PROGRAM X;
+
+	CONST
+		noinstructions = 0;
+		noast = 1;
+END X.

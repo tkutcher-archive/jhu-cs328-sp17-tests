@@ -1,0 +1,44 @@
+(* mismatching type for assignment *)
+
+PROGRAM X;
+
+	CONST
+		y = 10;
+		blah = 3;
+
+	TYPE
+		O = ARRAY 5 OF INTEGER;
+		I = INTEGER;
+		Q = RECORD
+			z: I;
+			(* valid shadow *)
+			y: ARRAY 16 OF O;
+		END;
+
+	VAR
+		bleh: ARRAY 10 OF I;
+		r: RECORD t: I; END;
+		x: I;
+		a: ARRAY 10 OF ARRAY blah OF Q;
+		RA: ARRAY 2 OF I;
+	
+
+BEGIN
+
+	r.t := 5;
+	(*tries assigning array to a field of type integer*)
+	r.t := a[2, blah  + y - 100 MOD 6].y[1](*[3]*);
+	RA[blah] := 1;
+
+	WHILE x+1 <= r.t DO
+		READ bleh[r.t];
+		a[1, 2].z := x;
+		WRITE r.t
+	END;
+
+
+
+	x := -1 * (-20) + 6 DIV 2
+	
+
+END X.

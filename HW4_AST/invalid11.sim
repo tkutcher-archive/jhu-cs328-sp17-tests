@@ -1,0 +1,36 @@
+(* array type expression not an integer *)
+
+PROGRAM X;
+
+
+	VAR
+		x: INTEGER;
+
+
+	CONST
+		z = 1;
+		y = 10 DIV 2 + z; (* 6 *)
+
+
+	TYPE
+		Q = RECORD
+			z: INTEGER;
+		END;
+
+		A = ARRAY Q OF INTEGER;
+
+
+
+BEGIN
+
+
+	x:= 0 + y;
+
+	WHILE x+1 <= 2 DO
+		WRITE y + 2 * y
+	END;
+
+	x := -1 * (-20) + 6 DIV 2
+	
+
+END X.

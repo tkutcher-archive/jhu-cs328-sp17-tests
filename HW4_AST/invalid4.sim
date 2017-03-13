@@ -1,0 +1,34 @@
+(*Duplicate declaration*)
+
+PROGRAM X;
+
+	CONST
+		y = 10;
+
+	TYPE
+		Q = RECORD
+			z: INTEGER;
+		END;
+
+
+	VAR
+		a: ARRAY 10 OF ARRAY 15 OF Q;
+
+		x: INTEGER;
+
+		y: INTEGER;
+
+BEGIN
+
+
+	x:= 0 + y;
+
+	WHILE x+1 <= 2 DO
+		a[1, 2].a := x;
+		WRITE y + 2 * y
+	END;
+
+	x := -1 * (-20) + 6 DIV 2
+	
+
+END X.

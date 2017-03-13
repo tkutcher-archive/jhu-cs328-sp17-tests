@@ -1,0 +1,10 @@
+PROGRAM X;
+CONST
+  sz = 47;
+VAR
+  a: ARRAY sz OF INTEGER;
+  b: ARRAY sz OF INTEGER;
+BEGIN
+  (*Illegal Assignment*)
+  a := b
+END X.

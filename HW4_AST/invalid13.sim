@@ -1,0 +1,32 @@
+(* arithmetic operator on non-integer type *)
+
+PROGRAM X;
+
+	CONST
+		z = 1;
+		y = 10 DIV 2 + z; (* 6 *)
+
+	TYPE
+		Q = RECORD
+			z: INTEGER;
+		END;
+
+	VAR
+		x: INTEGER;
+		a: ARRAY 10 OF ARRAY 15 OF Q;
+		q: RECORD blah: INTEGER; END;
+
+BEGIN
+
+	x := x + a - 2;
+
+	x:= 0 + y;
+
+	WHILE x+1 <= 2 DO
+		WRITE y + 2 * y
+	END;
+
+	x := -1 * (-20) + 6 DIV 2
+	
+
+END X.

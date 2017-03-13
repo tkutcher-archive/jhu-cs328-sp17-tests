@@ -1,0 +1,9 @@
+PROGRAM X;
+CONST
+  TYPE point = RECORD x,y: INTEGER; END;
+VAR
+  a: point;
+  b: point;
+BEGIN
+  a := b
+END X.

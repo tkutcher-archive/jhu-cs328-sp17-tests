@@ -1,0 +1,43 @@
+(* can only write integers *)
+
+PROGRAM X;
+
+	CONST
+		y = 10;
+		blah = 3;
+
+	TYPE
+		O = ARRAY 5 OF INTEGER;
+		I = INTEGER;
+		Q = RECORD
+			z: I;
+			(* valid shadow *)
+			y: ARRAY 16 OF O;
+		END;
+
+	VAR
+		bleh: ARRAY 10 OF I;
+		r: RECORD t: I; END;
+		x: I;
+		a: ARRAY 10 OF ARRAY blah OF Q;
+		RA: ARRAY 2 OF I;
+	
+
+BEGIN
+
+	r.t := 0;
+	RA[blah] := 1;
+
+	WHILE r.t <= blah DO
+		READ bleh[r.t];
+		a[1, 2].z := x;
+		(*tries to write a record*)
+		WRITE r
+	END;
+
+
+
+	x := -1 * (-20) + 6 DIV 2
+	
+
+END X.

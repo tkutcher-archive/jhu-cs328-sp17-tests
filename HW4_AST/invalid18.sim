@@ -1,0 +1,43 @@
+(* comparisons in conditions must be on integers *)
+
+PROGRAM X;
+
+	CONST
+		y = 10;
+		blah = 3;
+
+	TYPE
+		O = ARRAY 5 OF INTEGER;
+		I = INTEGER;
+		Q = RECORD
+			z: I;
+			(* valid shadow *)
+			y: ARRAY 16 OF O;
+		END;
+
+	VAR
+		bleh: ARRAY 10 OF I;
+		r: RECORD t: I; END;
+		x: I;
+		a: ARRAY 10 OF ARRAY blah OF Q;
+		RA: ARRAY 2 OF I;
+	
+
+BEGIN
+
+	r.t := 5;
+	RA[blah] := 1;
+
+	(*condition compares records*)
+	WHILE a[1, 2] <= r DO
+		READ bleh[r.t];
+		a[1, 2].z := x;
+		WRITE r.t
+	END;
+
+
+
+	x := -1 * (-20) + 6 DIV 2
+	
+
+END X.

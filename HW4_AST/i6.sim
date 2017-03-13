@@ -1,0 +1,11 @@
+
+PROGRAM X;
+
+VAR
+	a: RECORD x: ARRAY 10 OF INTEGER; END;
+  	b: INTEGER;
+
+BEGIN
+	a.x[1] := b
+
+END X.
