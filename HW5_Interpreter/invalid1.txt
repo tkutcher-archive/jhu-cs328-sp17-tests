@@ -1,0 +1,16 @@
+(*negative index*)
+PROGRAM X;
+  TYPE
+	R = RECORD
+	  a, b: INTEGER; END;
+	I = INTEGER;
+	A = ARRAY 10 OF INTEGER;
+	B = ARRAY 10 OF ARRAY 5 OF INTEGER;
+  VAR x,y: INTEGER;
+	a: A;
+	b: B;
+	r, r2: R;
+BEGIN
+	x := -1;
+	a[x] := 2
+END X.
