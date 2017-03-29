@@ -1,0 +1,33 @@
+(* finite_random.sim *)
+
+PROGRAM Random;
+CONST
+  a = 16807;
+  m = 2147483647;
+  q = m DIV a;
+  r = m MOD a;
+VAR
+  Z: INTEGER; (* seed *)
+  g: INTEGER; (* temporary *)
+  counter: INTEGER;
+  nums: INTEGER;
+BEGIN
+  Z := 1;
+  counter := 0;
+  READ nums;
+  (* Forever... *)
+  WHILE counter < nums DO
+    (* ...make next random number... *)
+    g := a*(Z MOD q) - r*(Z DIV q);
+    IF g > 0 THEN Z := g ELSE Z := g + m END;
+    (* ...and print it. *)
+    WRITE Z;
+    counter := counter + 1
+  END
+END Random.
+
+(*
+  This is an integer version of the random number generator
+  described in Wirth, Reiser: Programming in Oberon, 1992.
+  I guess the original reference is Park and Miller, 1988.
+*)

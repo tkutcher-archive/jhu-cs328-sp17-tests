@@ -1,0 +1,69 @@
+PROGRAM X;
+
+  TYPE blah = ARRAY 5 OF INTEGER;
+  TYPE standard = RECORD x: INTEGER; y: INTEGER; END;
+
+  CONST ff = 42;
+
+  VAR 
+  	raone: blah;
+  	ratwo: blah;
+  	rathree: blah;
+
+  	recone: standard;
+  	rectwo: standard;
+  	recthree: RECORD ra: blah; END;
+
+
+BEGIN
+	raone[3] := ff * 2;
+
+	recone.x := raone[3];
+
+	rectwo.x := -3;
+	rectwo := recone;
+
+	ratwo := raone; (* 0, 0, 0, 84, 0 *)
+	recthree.ra := ratwo;
+
+	rathree := recthree.ra;
+
+	WRITE recthree.ra[1]; (*0*)
+	WRITE recthree.ra[3]; (*84*)
+	WRITE rathree[3] (*84*)
+
+
+END X.
+
+(*
+PROGRAM X;
+  CONST ff = 42;
+  VAR rec: RECORD x: INTEGER; y: INTEGER; END;
+
+BEGIN
+	READ rec.x;
+	rec.y := ff;
+
+	WRITE rec.x;
+	WRITE rec.y
+
+END X.*)
+
+(*
+PROGRAM X;
+  CONST ff = 42;
+  VAR rec: RECORD 
+  	x: INTEGER;
+  	y: INTEGER; 
+  	END;
+
+BEGIN
+	
+	IF ff > 40 + 2 THEN
+		WRITE 1
+	ELSE
+		WRITE -1
+	END
+
+END X.
+*)

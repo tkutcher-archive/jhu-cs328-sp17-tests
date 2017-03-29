@@ -1,0 +1,23 @@
+PROGRAM X;
+CONST
+A = 121;
+TYPE
+R = RECORD
+    a: INTEGER;
+    b: ARRAY 11 OF INTEGER;
+END;
+VAR
+B: ARRAY 5 OF ARRAY 6 OF INTEGER;
+C: R;
+D: R;
+BEGIN
+B[3][4] := A DIV 2;
+WRITE B[3][4];
+READ C.b[10];
+C.a := B[3,4];
+B[3][1] := C.b[10] - C.a;
+WRITE B[3,1];
+WRITE D.b[10];
+D := C;
+WRITE D.b[10]
+END X.

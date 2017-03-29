@@ -1,0 +1,33 @@
+PROGRAM Sort;
+CONST
+   len = 4;
+VAR
+   i, j, m, tmp: INTEGER;
+   a: ARRAY len OF INTEGER;
+BEGIN
+    a[0] := 3;
+    a[1] := 1;
+    a[2] := 4;
+    a[3] := 2;
+    WHILE j < (len-1) DO
+        m := j;
+        i := j + 1;
+        WHILE i < len DO
+            IF a[i] < a[m] THEN
+               m := i
+            END;
+            i := i + 1
+        END;
+        IF m # j THEN
+            tmp := a[j];
+            a[j] := a[m];
+            a[m] := tmp
+        END;
+        j := j + 1
+    END;
+    i := 0;
+    WHILE i < len DO
+        WRITE a[i];
+        i := i + 1
+    END
+END Sort.
