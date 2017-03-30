@@ -1,0 +1,11 @@
+PROGRAM X;
+VAR x : ARRAY 5 OF INTEGER;
+VAR j : INTEGER;
+
+BEGIN
+
+j := x[4]; (* is fine *)
+j := x[5]; (* is not fine *)
+WRITE j (* making sure this doesn't execute *)
+
+END X.

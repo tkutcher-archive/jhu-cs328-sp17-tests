@@ -1,0 +1,9 @@
+PROGRAM X;
+CONST x = 0;
+VAR j, result : INTEGER;
+
+BEGIN
+result := j DIV 10; (* this is fine *)
+result := j MOD x; (* div by zero *)
+WRITE x (* making sure this doesn't execute *)
+END X.
