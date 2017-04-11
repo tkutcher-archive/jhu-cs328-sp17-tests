@@ -1,0 +1,42 @@
+
+
+PROGRAM control;
+
+TYPE
+	A = ARRAY 4 OF INTEGER;
+	R = RECORD
+		a: A;
+		b: INTEGER;
+		END;
+
+VAR
+	a: A;
+	r: R;
+	i: INTEGER;
+	j: INTEGER;
+
+BEGIN
+	a[1] := 2;
+	
+	IF 6 = 6 THEN
+		WRITE 1;
+		IF 4 >= 3 THEN
+			WRITE 1
+		END
+	ELSE
+		WRITE -1
+	END;
+
+	READ a[3];
+
+	WHILE a[0] < a[3] DO
+		j := 10;
+		WHILE j > 0 DO
+			WRITE a[1];
+			a[1] := a[1] * 2;
+			j := j - 1
+		END;
+		a[0] := a[0] + 1
+	END
+
+END control.

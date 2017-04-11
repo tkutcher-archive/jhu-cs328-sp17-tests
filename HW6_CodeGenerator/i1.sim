@@ -1,0 +1,28 @@
+
+
+PROGRAM i1;
+
+TYPE
+	A = ARRAY 4 OF INTEGER;
+	R = RECORD
+		a: A;
+		b: INTEGER;
+		END;
+
+VAR
+	a: A;
+	r: R;
+	i: INTEGER;
+	j: INTEGER;
+
+BEGIN
+WRITE i
+(*j := 18;
+r.b := j;
+WRITE r.a[i];
+WRITE j;
+r.a[i] := r.b;
+WRITE r.b;
+WRITE r.a[i]*)
+
+END i1.

@@ -1,0 +1,32 @@
+
+
+PROGRAM basicIf;
+
+TYPE
+	A = ARRAY 4 OF INTEGER;
+	R = RECORD
+		a: A;
+		b: INTEGER;
+		END;
+
+VAR
+	a: A;
+	r: R;
+	i: INTEGER;
+	j: INTEGER;
+
+BEGIN
+
+	i := 2;
+
+	IF i <= 6 THEN
+		WRITE 11
+	END;
+
+	IF i # 2 THEN
+		WRITE 13
+	ELSE
+		WRITE 54
+	END
+
+END basicIf.

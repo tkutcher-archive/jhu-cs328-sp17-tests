@@ -1,0 +1,27 @@
+PROGRAM controlflow;
+
+BEGIN
+
+	IF 1 <= 2 THEN
+		WRITE 1
+	ELSE
+		WRITE 0
+	END;
+
+	IF 2 # 2 THEN
+		WRITE 0
+	ELSE
+		WRITE 1
+	END;
+
+	IF 1 = 1 THEN
+		WRITE 1
+	END;
+
+	IF 4 + 8 > 11 THEN
+		WRITE 1
+	ELSE
+		WRITE 0
+	END
+
+END controlflow.

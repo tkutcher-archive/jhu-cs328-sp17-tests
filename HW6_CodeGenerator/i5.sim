@@ -1,0 +1,26 @@
+
+
+PROGRAM loop;
+
+TYPE
+	A = ARRAY 4 OF INTEGER;
+	R = RECORD
+		a: A;
+		b: INTEGER;
+		END;
+
+VAR
+	a: A;
+	r: R;
+	i: INTEGER;
+	j: INTEGER;
+
+BEGIN
+
+	i := 2;
+
+	WHILE i < 2048 DO
+		i := i * 2
+	END
+
+END loop.

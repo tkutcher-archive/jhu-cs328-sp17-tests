@@ -1,0 +1,45 @@
+
+
+PROGRAM arith;
+
+TYPE
+	A = ARRAY 4 OF INTEGER;
+	R = RECORD
+		a: A;
+		b: INTEGER;
+		END;
+
+VAR
+	a: A;
+	r: R;
+	i: INTEGER;
+	j: INTEGER;
+
+BEGIN
+	WRITE i;
+	WRITE 0;
+	i := 3 + 6;
+	WRITE i;
+	WRITE 9;
+	WRITE i + 4;
+	WRITE 13;
+
+	i := 54 - 7;
+	WRITE i - 2 + 1;
+	WRITE 46;
+
+	i := 2;
+	j := i * 11 + 1;
+	WRITE j;
+	WRITE 23;
+
+	j := 5;
+	i := 27;
+	WRITE i DIV j;
+	WRITE 5;
+	WRITE i MOD j;
+	WRITE 2
+
+
+
+END arith.
