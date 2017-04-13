@@ -1,0 +1,29 @@
+PROGRAM X;
+CONST
+A = 121;
+TYPE
+R = RECORD
+    a: INTEGER;
+    b: ARRAY 11 OF INTEGER;
+END;
+
+VAR
+	B: ARRAY 5 OF ARRAY 6 OF INTEGER;
+	C: R;
+	D: R;
+
+BEGIN
+
+	B[3][4] := 6;
+	WRITE B[3][4];
+
+	READ C.b[10];
+	WRITE C.b[10];
+
+	C.a := C.b[10];
+	WRITE C.a;
+
+	C.a := 66;
+	WRITE C.a
+
+END X.

@@ -1,0 +1,16 @@
+PROGRAM read;
+
+TYPE
+	A = ARRAY 6 OF INTEGER;
+	R = RECORD
+		a: A;
+		b: INTEGER;
+		END;
+
+VAR
+	a: A;
+	r: R;
+	i: INTEGER;
+	j: INTEGER;
+
+END read.

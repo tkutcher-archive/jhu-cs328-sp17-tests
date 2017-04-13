@@ -1,0 +1,17 @@
+PROGRAM X;
+
+	CONST
+		y = 10;
+
+	TYPE
+		O = ARRAY 5 OF INTEGER;
+
+	VAR
+		bleh: O;
+		blah: O;
+
+BEGIN
+	bleh[3] := 5;
+	blah := bleh
+
+END X.

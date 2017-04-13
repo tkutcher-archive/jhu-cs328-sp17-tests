@@ -1,30 +1,17 @@
 	.text
-	.comm	pgmem,44,4
+	.comm	pgmem,0,4
 	.global	main
 
 main:
 	push	{fp, lr}
 
 
-	@ Assignment
-	ldr 	r2, .MEM
-	ldr 	r3, =16
-	add 	r2, r2, r3
-	push	{r2}
+	@ IF Instruction
 	ldr 	r2, =2
 	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
-
-	@ IF Instruction
-	ldr 	r2, =6
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =16
-	add 	r2, r2, r3
+	ldr 	r2, =1
 	push	{r2}
 	pop 	{r2, r3}
-	ldr 	r2, [r2]
 	cmp 	r2, r3
 	blle	true
 	blgt	false
@@ -34,24 +21,28 @@ main:
 	bne 	.L1_skipt
 
 	@ WRITE Instruction
-	ldr 	r2, =11
+	ldr 	r2, =1
 	push	{r2}
 	pop 	{r1}
 	ldr 	r0, =write
 	bl  	printf
 	b   	.L2_skipf
 .L1_skipt:
+
+	@ WRITE Instruction
+	ldr 	r2, =0
+	push	{r2}
+	pop 	{r1}
+	ldr 	r0, =write
+	bl  	printf
 .L2_skipf:
 
 	@ IF Instruction
 	ldr 	r2, =2
 	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =16
-	add 	r2, r2, r3
+	ldr 	r2, =2
 	push	{r2}
 	pop 	{r2, r3}
-	ldr 	r2, [r2]
 	cmp 	r2, r3
 	blne	true
 	bleq	false
@@ -61,7 +52,7 @@ main:
 	bne 	.L3_skipt
 
 	@ WRITE Instruction
-	ldr 	r2, =13
+	ldr 	r2, =0
 	push	{r2}
 	pop 	{r1}
 	ldr 	r0, =write
@@ -70,12 +61,67 @@ main:
 .L3_skipt:
 
 	@ WRITE Instruction
-	ldr 	r2, =54
+	ldr 	r2, =1
 	push	{r2}
 	pop 	{r1}
 	ldr 	r0, =write
 	bl  	printf
 .L4_skipf:
+
+	@ IF Instruction
+	ldr 	r2, =1
+	push	{r2}
+	ldr 	r2, =1
+	push	{r2}
+	pop 	{r2, r3}
+	cmp 	r2, r3
+	bleq	true
+	blne	false
+	push	{r0}
+	pop 	{r2}
+	cmp 	r2, #1
+	bne 	.L5_skipt
+
+	@ WRITE Instruction
+	ldr 	r2, =1
+	push	{r2}
+	pop 	{r1}
+	ldr 	r0, =write
+	bl  	printf
+	b   	.L6_skipf
+.L5_skipt:
+.L6_skipf:
+
+	@ IF Instruction
+	ldr 	r2, =11
+	push	{r2}
+	ldr 	r2, =12
+	push	{r2}
+	pop 	{r2, r3}
+	cmp 	r2, r3
+	blgt	true
+	blle	false
+	push	{r0}
+	pop 	{r2}
+	cmp 	r2, #1
+	bne 	.L7_skipt
+
+	@ WRITE Instruction
+	ldr 	r2, =1
+	push	{r2}
+	pop 	{r1}
+	ldr 	r0, =write
+	bl  	printf
+	b   	.L8_skipf
+.L7_skipt:
+
+	@ WRITE Instruction
+	ldr 	r2, =0
+	push	{r2}
+	pop 	{r1}
+	ldr 	r0, =write
+	bl  	printf
+.L8_skipf:
 
 	pop 	{fp, pc}
 

@@ -1,0 +1,27 @@
+PROGRAM read;
+
+CONST
+	toobig = -2147483649;
+
+TYPE
+	A = ARRAY 4 OF INTEGER;
+	R = RECORD
+		a: A;
+		b: INTEGER;
+		END;
+
+VAR
+	a: A;
+	r: R;
+	i: INTEGER;
+	j: INTEGER;
+
+BEGIN
+
+	READ i;
+	WRITE i;
+
+	READ r.a[3];
+	WRITE r.a[3]
+
+END read.

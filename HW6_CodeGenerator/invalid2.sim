@@ -1,0 +1,29 @@
+PROGRAM read;
+
+CONST
+	blah = 1313;
+
+TYPE
+	A = ARRAY 4 OF INTEGER;
+	R = RECORD
+		a: A;
+		b: INTEGER;
+		END;
+
+VAR
+	a: A;
+	r: R;
+	i: INTEGER;
+	j: INTEGER;
+
+BEGIN
+
+	READ i;
+
+	WRITE blah DIV i;
+
+	READ i;
+
+	WRITE blah MOD i
+
+END read.

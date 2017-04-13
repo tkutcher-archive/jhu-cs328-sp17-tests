@@ -14,7 +14,7 @@ main:
 	ldr 	r2, [r2]
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =36
+	ldr 	r3, =40
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
@@ -22,11 +22,21 @@ main:
 
 	@ WRITE Instruction
 	ldr 	r2, .MEM
-	ldr 	r3, =36
+	ldr 	r3, =40
 	add 	r2, r2, r3
 	push	{r2}
+	ldr 	r2, =1313
+	push	{r2}
+	pop 	{r2, r3}
+	ldr 	r3, [r3]
+	mov 	r0, r2
+	mov 	r1, r3
+	cmp 	r1, #0 @ check division by 0
+	beq 	err
+	bl  	__aeabi_idiv
+	mov 	r2, r0
+	push	{r2}
 	pop 	{r1}
-	ldr 	r1, [r1]
 	ldr 	r0, =write
 	bl  	printf
 
@@ -37,50 +47,30 @@ main:
 	ldr 	r2, =num
 	ldr 	r2, [r2]
 	push	{r2}
-	ldr 	r2, =3
-	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
+	ldr 	r3, =40
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
 	str 	r3, [r2]
 
 	@ WRITE Instruction
-	ldr 	r2, =3
-	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =0
+	ldr 	r3, =40
 	add 	r2, r2, r3
 	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =0
-	add 	r2, r2, r3
+	ldr 	r2, =1313
 	push	{r2}
 	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
+	ldr 	r3, [r3]
+	mov 	r0, r2
+	mov 	r1, r3
+	cmp 	r1, #0 @ check division by 0
 	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
+	bl  	__aeabi_idivmod
+	mov 	r2, r1
 	push	{r2}
 	pop 	{r1}
-	ldr 	r1, [r1]
 	ldr 	r0, =write
 	bl  	printf
 
@@ -115,7 +105,7 @@ read:
 	.asciz	"%d"
 
 emsg:
-	.asciz	"error: index out of bounds\n"
+	.asciz	"error: invalid number\n"
 
 num:
 	.word	0

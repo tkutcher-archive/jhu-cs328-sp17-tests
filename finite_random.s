@@ -8,7 +8,7 @@ main:
 
 	@ Assignment
 	ldr 	r2, .MEM
-	ldr 	r3, =12
+	ldr 	r3, =8
 	add 	r2, r2, r3
 	push	{r2}
 	ldr 	r2, =1
@@ -18,7 +18,7 @@ main:
 
 	@ Assignment
 	ldr 	r2, .MEM
-	ldr 	r3, =0
+	ldr 	r3, =4
 	add 	r2, r2, r3
 	push	{r2}
 	ldr 	r2, =0
@@ -34,7 +34,7 @@ main:
 	ldr 	r2, [r2]
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =8
+	ldr 	r3, =0
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
@@ -42,11 +42,11 @@ main:
 
 	@ IF Instruction
 	ldr 	r2, .MEM
-	ldr 	r3, =8
+	ldr 	r3, =0
 	add 	r2, r2, r3
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =0
+	ldr 	r3, =4
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
@@ -68,19 +68,21 @@ main:
 
 	@ Assignment
 	ldr 	r2, .MEM
-	ldr 	r3, =4
+	ldr 	r3, =12
 	add 	r2, r2, r3
 	push	{r2}
 	ldr 	r2, =127773
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =12
+	ldr 	r3, =8
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
 	ldr 	r2, [r2]
 	mov 	r0, r2
 	mov 	r1, r3
+	cmp 	r1, #0 @ check division by 0
+	beq 	err
 	bl  	__aeabi_idiv
 	mov 	r2, r0
 	push	{r2}
@@ -92,13 +94,15 @@ main:
 	ldr 	r2, =127773
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =12
+	ldr 	r3, =8
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
 	ldr 	r2, [r2]
 	mov 	r0, r2
 	mov 	r1, r3
+	cmp 	r1, #0 @ check division by 0
+	beq 	err
 	bl  	__aeabi_idivmod
 	mov 	r2, r1
 	push	{r2}
@@ -117,7 +121,7 @@ main:
 	ldr 	r2, =0
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =4
+	ldr 	r3, =12
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
@@ -132,11 +136,11 @@ main:
 
 	@ Assignment
 	ldr 	r2, .MEM
-	ldr 	r3, =12
+	ldr 	r3, =8
 	add 	r2, r2, r3
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =4
+	ldr 	r3, =12
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
@@ -147,13 +151,13 @@ main:
 
 	@ Assignment
 	ldr 	r2, .MEM
-	ldr 	r3, =12
+	ldr 	r3, =8
 	add 	r2, r2, r3
 	push	{r2}
 	ldr 	r2, =2147483647
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =4
+	ldr 	r3, =12
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
@@ -166,7 +170,7 @@ main:
 
 	@ WRITE Instruction
 	ldr 	r2, .MEM
-	ldr 	r3, =12
+	ldr 	r3, =8
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r1}
@@ -176,13 +180,13 @@ main:
 
 	@ Assignment
 	ldr 	r2, .MEM
-	ldr 	r3, =0
+	ldr 	r3, =4
 	add 	r2, r2, r3
 	push	{r2}
 	ldr 	r2, =1
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =0
+	ldr 	r3, =4
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
@@ -192,11 +196,11 @@ main:
 	pop 	{r2, r3}
 	str 	r2, [r3]
 	ldr 	r2, .MEM
-	ldr 	r3, =8
+	ldr 	r3, =0
 	add 	r2, r2, r3
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =0
+	ldr 	r3, =4
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
@@ -224,15 +228,27 @@ false:
 	ldr 	r0, =0
 	bx  	lr
 
+err:
+	ldr 	r0, =stderr
+	ldr 	r0, [r0]
+	ldr 	r1, =emsg
+	bl  	fprintf
+	ldr 	r0, =1
+	bl  	exit
+
 .MEM:
 	.word	pgmem
 
 	.data
+
 write:
 	.asciz	"%d\n"
 
 read:
 	.asciz	"%d"
+
+emsg:
+	.asciz	"error: invalid number\n"
 
 num:
 	.word	0

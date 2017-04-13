@@ -1,20 +1,10 @@
 	.text
-	.comm	pgmem,44,4
+	.comm	pgmem,60,4
 	.global	main
 
 main:
 	push	{fp, lr}
 
-
-	@ WRITE Instruction
-	ldr 	r2, .MEM
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r1}
-	ldr 	r1, [r1]
-	ldr 	r0, =write
-	bl  	printf
 
 	pop 	{fp, pc}
 

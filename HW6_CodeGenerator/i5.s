@@ -8,7 +8,7 @@ main:
 
 	@ Assignment
 	ldr 	r2, .MEM
-	ldr 	r3, =40
+	ldr 	r3, =24
 	add 	r2, r2, r3
 	push	{r2}
 	ldr 	r2, =2
@@ -20,7 +20,7 @@ main:
 	ldr 	r2, =2048
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =40
+	ldr 	r3, =24
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
@@ -41,13 +41,13 @@ main:
 
 	@ Assignment
 	ldr 	r2, .MEM
-	ldr 	r3, =40
+	ldr 	r3, =24
 	add 	r2, r2, r3
 	push	{r2}
 	ldr 	r2, =2
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =40
+	ldr 	r3, =24
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
@@ -59,7 +59,7 @@ main:
 	ldr 	r2, =2048
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =40
+	ldr 	r3, =24
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
@@ -86,15 +86,27 @@ false:
 	ldr 	r0, =0
 	bx  	lr
 
+err:
+	ldr 	r0, =stderr
+	ldr 	r0, [r0]
+	ldr 	r1, =emsg
+	bl  	fprintf
+	ldr 	r0, =1
+	bl  	exit
+
 .MEM:
 	.word	pgmem
 
 	.data
+
 write:
 	.asciz	"%d\n"
 
 read:
 	.asciz	"%d"
+
+emsg:
+	.asciz	"error: index out of bounds\n"
 
 num:
 	.word	0
