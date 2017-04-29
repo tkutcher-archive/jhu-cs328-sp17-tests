@@ -82,5 +82,13 @@ instructions =>
       type:
         INTEGER
       value:
+        3
+    END CONST
+  Number:
+  value =>
+    CONST BEGIN
+      type:
+        INTEGER
+      value:
         47
     END CONST
