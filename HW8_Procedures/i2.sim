@@ -8,7 +8,11 @@ VAR
 	r: array;
 
 PROCEDURE add(a, b: INTEGER) : INTEGER;
-	RETURN a+b
+	VAR
+		k: INTEGER;
+	BEGIN
+		k := i
+	RETURN a+b+k
 END add;
 
 PROCEDURE assign(ra: array; index, val: INTEGER);

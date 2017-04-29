@@ -15,6 +15,11 @@ SCOPE BEGIN
               type:
                 INTEGER
             END VAR
+          k =>
+            VAR BEGIN
+              type:
+                INTEGER
+            END VAR
         END SCOPE
       END PROC
   array =>

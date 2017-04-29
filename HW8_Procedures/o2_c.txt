@@ -48,118 +48,146 @@ Program
       identifier<INTEGER>@(114, 120)
       ;@(121, 121)
       Locals
-      RETURN@(124, 129)
-      Expression
-        Term
-          Factor
-            Designator
-              identifier<a>@(131, 131)
-              Selector
-        +@(132, 132)
-        Term
-          Factor
-            Designator
-              identifier<b>@(133, 133)
-              Selector
-      END@(135, 137)
-      identifier<add>@(139, 141)
-      ;@(142, 142)
-    ProcDecl
-      PROCEDURE@(145, 153)
-      identifier<assign>@(155, 160)
-      (@(161, 161)
-      Formals
-        Formal
+        VarDecl
+          VAR@(124, 126)
           IdentifierList
-            identifier<ra>@(162, 163)
-          :@(164, 164)
-          identifier<array>@(166, 170)
-        ;@(171, 171)
-        Formal
-          IdentifierList
-            identifier<index>@(173, 177)
-            ,@(178, 178)
-            identifier<val>@(180, 182)
-          :@(183, 183)
-          identifier<INTEGER>@(185, 191)
-      )@(192, 192)
-      ;@(193, 193)
-      Locals
-      BEGIN@(196, 200)
+            identifier<k>@(130, 130)
+          :@(131, 131)
+          Type
+            identifier<INTEGER>@(133, 139)
+          ;@(140, 140)
+      BEGIN@(143, 147)
       Instructions
         Instruction
           Assign
             Designator
-              identifier<ra>@(204, 205)
+              identifier<k>@(151, 151)
               Selector
-                [@(206, 206)
+            :=@(153, 154)
+            Expression
+              Term
+                Factor
+                  Designator
+                    identifier<i>@(156, 156)
+                    Selector
+      RETURN@(159, 164)
+      Expression
+        Term
+          Factor
+            Designator
+              identifier<a>@(166, 166)
+              Selector
+        +@(167, 167)
+        Term
+          Factor
+            Designator
+              identifier<b>@(168, 168)
+              Selector
+        +@(169, 169)
+        Term
+          Factor
+            Designator
+              identifier<k>@(170, 170)
+              Selector
+      END@(172, 174)
+      identifier<add>@(176, 178)
+      ;@(179, 179)
+    ProcDecl
+      PROCEDURE@(182, 190)
+      identifier<assign>@(192, 197)
+      (@(198, 198)
+      Formals
+        Formal
+          IdentifierList
+            identifier<ra>@(199, 200)
+          :@(201, 201)
+          identifier<array>@(203, 207)
+        ;@(208, 208)
+        Formal
+          IdentifierList
+            identifier<index>@(210, 214)
+            ,@(215, 215)
+            identifier<val>@(217, 219)
+          :@(220, 220)
+          identifier<INTEGER>@(222, 228)
+      )@(229, 229)
+      ;@(230, 230)
+      Locals
+      BEGIN@(233, 237)
+      Instructions
+        Instruction
+          Assign
+            Designator
+              identifier<ra>@(241, 242)
+              Selector
+                [@(243, 243)
                 ExpressionList
                   Expression
                     Term
                       Factor
                         Designator
-                          identifier<index>@(207, 211)
+                          identifier<index>@(244, 248)
                           Selector
-                ]@(212, 212)
-            :=@(214, 215)
+                ]@(249, 249)
+            :=@(251, 252)
             Expression
               Term
                 Factor
                   Designator
-                    identifier<val>@(217, 219)
+                    identifier<val>@(254, 256)
                     Selector
-      END@(221, 223)
-      identifier<assign>@(225, 230)
-      ;@(231, 231)
-  BEGIN@(234, 238)
+      END@(258, 260)
+      identifier<assign>@(262, 267)
+      ;@(268, 268)
+  BEGIN@(271, 275)
   Instructions
     Instruction
       Write
-        WRITE@(241, 245)
+        WRITE@(278, 282)
         Expression
           Term
             Factor
               Call
-                identifier<add>@(247, 249)
-                (@(250, 250)
+                identifier<add>@(284, 286)
+                (@(287, 287)
                 Actuals
                   ExpressionList
                     Expression
                       Term
                         Factor
-                          integer<2>@(251, 251)
-                    ,@(252, 252)
+                          integer<2>@(288, 288)
+                    ,@(289, 289)
                     Expression
                       Term
                         Factor
                           Designator
-                            identifier<i>@(254, 254)
+                            identifier<i>@(291, 291)
                             Selector
-                )@(255, 255)
-    ;@(256, 256)
+                )@(292, 292)
+    ;@(293, 293)
     Instruction
       Call
-        identifier<assign>@(259, 264)
-        (@(265, 265)
+        identifier<assign>@(296, 301)
+        (@(302, 302)
         Actuals
           ExpressionList
             Expression
               Term
                 Factor
                   Designator
-                    identifier<r>@(266, 266)
+                    identifier<r>@(303, 303)
                     Selector
-            ,@(267, 267)
+            ,@(304, 304)
             Expression
               Term
                 Factor
-                  integer<2>@(269, 269)
-            ,@(270, 270)
+                  integer<3>@(306, 306)
+            ,@(307, 307)
             Expression
               Term
                 Factor
-                  integer<47>@(272, 273)
-        )@(274, 274)
-  END@(277, 279)
-  identifier<addproc>@(281, 287)
-  .@(288, 288)
+                  integer<47>@(309, 310)
+        )@(311, 311)
+  END@(314, 316)
+  identifier<addproc>@(318, 324)
+  .@(325, 325)
