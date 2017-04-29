@@ -1,0 +1,29 @@
+(* Undeclared type in formals*)
+PROGRAM X;
+	
+	VAR b : INTEGER;
+
+	PROCEDURE increment(a : INTEGER; b : array) : INTEGER ;
+		
+		VAR
+
+		x, y: INTEGER;
+
+		BEGIN
+			x := x + 1;
+			READ y;
+			x := y + 1
+			RETURN a
+		END increment;
+
+	PROCEDURE a() : INTEGER;
+	END a;
+
+	PROCEDURE c() ;
+	END c;
+
+BEGIN
+
+	b := increment(b)
+
+END X.
