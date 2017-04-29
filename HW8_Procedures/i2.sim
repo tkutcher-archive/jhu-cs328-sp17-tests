@@ -1,0 +1,23 @@
+PROGRAM addproc;
+
+TYPE
+	array = ARRAY 10 OF INTEGER;
+
+VAR
+	i: INTEGER;
+	r: array;
+
+PROCEDURE add(a, b: INTEGER) : INTEGER;
+	RETURN a+b
+END add;
+
+PROCEDURE assign(ra: array; index, val: INTEGER);
+	BEGIN
+		ra[index] := val
+END assign;
+
+BEGIN
+	WRITE add(2, i);
+	assign(r, 2, 47)
+
+END addproc.

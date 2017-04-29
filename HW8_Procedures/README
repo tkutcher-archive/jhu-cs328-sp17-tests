@@ -1,0 +1,9 @@
+o2_flag means debugging output for running
+compiler with the char for that flag.
+
+in symbol table, I don't separate the scopes
+for the formals and the locals - if they aren't
+connected in the "next" linked list then they
+are part of the local variables for the procedure.
+I also include the AST nodes for the instructions
+in my ST output.

@@ -1,0 +1,70 @@
+SCOPE BEGIN
+  add =>
+    PROC BEGIN
+      type:
+        INTEGER
+      scope:
+        SCOPE BEGIN
+          a =>
+            VAR BEGIN
+              type:
+                INTEGER
+            END VAR
+          b =>
+            VAR BEGIN
+              type:
+                INTEGER
+            END VAR
+        END SCOPE
+      END PROC
+  array =>
+    ARRAY BEGIN
+      type:
+        INTEGER
+      length:
+        10
+    END ARRAY
+  assign =>
+    PROC BEGIN
+      type:
+        VOID
+      scope:
+        SCOPE BEGIN
+          index =>
+            VAR BEGIN
+              type:
+                INTEGER
+            END VAR
+          ra =>
+            VAR BEGIN
+              type:
+                ARRAY BEGIN
+                  type:
+                    INTEGER
+                  length:
+                    10
+                END ARRAY
+            END VAR
+          val =>
+            VAR BEGIN
+              type:
+                INTEGER
+            END VAR
+        END SCOPE
+      END PROC
+  i =>
+    VAR BEGIN
+      type:
+        INTEGER
+    END VAR
+  r =>
+    VAR BEGIN
+      type:
+        ARRAY BEGIN
+          type:
+            INTEGER
+          length:
+            10
+        END ARRAY
+    END VAR
+END SCOPE

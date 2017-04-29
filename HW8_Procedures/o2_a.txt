@@ -1,0 +1,86 @@
+instructions =>
+  Write:
+  expression =>
+    Call
+    proc =>
+      PROC BEGIN
+        type:
+          INTEGER
+        scope:
+          SCOPE BEGIN
+            a =>
+              VAR BEGIN
+                type:
+                  INTEGER
+              END VAR
+            b =>
+              VAR BEGIN
+                type:
+                  INTEGER
+              END VAR
+          END SCOPE
+        END PROC
+    expression_list =>
+    Number:
+    value =>
+      CONST BEGIN
+        type:
+          INTEGER
+        value:
+          2
+      END CONST
+    Variable:
+    variable =>
+      VAR BEGIN
+        type:
+          INTEGER
+      END VAR
+  Call
+  proc =>
+    PROC BEGIN
+      type:
+        VOID
+      scope:
+        SCOPE BEGIN
+          index =>
+            VAR BEGIN
+              type:
+                INTEGER
+            END VAR
+          ra =>
+            VAR BEGIN
+              type:
+                ARRAY BEGIN
+                  type:
+                    INTEGER
+                  length:
+                    10
+                END ARRAY
+            END VAR
+          val =>
+            VAR BEGIN
+              type:
+                INTEGER
+            END VAR
+        END SCOPE
+      END PROC
+  expression_list =>
+  Variable:
+  variable =>
+    VAR BEGIN
+      type:
+        ARRAY BEGIN
+          type:
+            INTEGER
+          length:
+            10
+        END ARRAY
+    END VAR
+  Number:
+  value =>
+    CONST BEGIN
+      type:
+        INTEGER
+      value:
+        47
+    END CONST
