@@ -1,0 +1,37 @@
+PROGRAM control;
+
+TYPE
+	A = ARRAY 10 OF INTEGER;
+	R = RECORD
+		a: A;
+		b: INTEGER;
+		END;
+	W = ARRAY 5 OF R;
+
+VAR
+	a: A;
+	r: R;
+	w: W;
+	i: INTEGER;
+	j: INTEGER;
+
+BEGIN
+
+	IF 2 # 1 THEN
+		WRITE 16
+	ELSE 
+		WRITE 43
+	END;
+
+	WHILE 1 >= 2 DO
+		WRITE 1
+	END;
+
+	READ i;
+
+	WHILE j < i DO
+		WRITE j;
+		j := j + 1
+	END
+
+END control.

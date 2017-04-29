@@ -1,0 +1,47 @@
+(* Integer Square Root Calculator *)
+
+
+PROGRAM isqrt;
+
+CONST
+	guess = 1;
+
+VAR
+	n: INTEGER;
+	x1, x2, dif: INTEGER;
+
+BEGIN
+	READ n;
+
+	IF n <= 0 THEN
+		IF n = 0 THEN
+			WRITE 0
+		ELSE
+			WRITE -1
+		END
+	ELSE
+		x2 := guess;
+
+		REPEAT
+			x1 := x2;
+			x2 := (x1 + (n DIV x1)) DIV 2;
+			dif := x2 - x1;
+
+			IF dif = 1 THEN
+				IF n > 4 THEN
+					dif := 0;
+					x2 := x1
+				ELSE
+					IF n = 3 THEN
+						dif := 0;
+						x2 := 1
+					END
+				END
+			END
+
+		UNTIL dif = 0 END;
+
+		WRITE x2
+	END
+
+END isqrt.

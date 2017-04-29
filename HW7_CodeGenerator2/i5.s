@@ -9,31 +9,31 @@ main:
 
 	@ WRITE Instruction
 	ldr	r0, =write
-	ldr	r1, [r11, #0]
-	bl	printf
-
-	@ Assignment
-	ldr	r9, =18
-	str	r9, [r11, #40]
-
-	@ Assignment
-	ldr	r9, [r11, #40]
-	str	r9, [r11, #20]
-
-	@ WRITE Instruction
-	ldr	r9, [r11, #0]
-	cmp	r9, #3	@ bounds checking
-	bhi	err
-	ldr	r5, =4
-	mul	r9, r9, r5	@ indexing
-	add	r9, r9, #4
-	ldr	r0, =write
-	ldr	r1, [r11, r9]
-	bl	printf
-
-	@ WRITE Instruction
-	ldr	r0, =write
 	ldr	r1, [r11, #40]
+	bl	printf
+
+	@ Assignment
+	ldr	r10, =18
+	str	r10, [r11, #0]
+
+	@ Assignment
+	ldr	r10, [r11, #0]
+	str	r10, [r11, #20]
+
+	@ WRITE Instruction
+	ldr	r10, [r11, #40]
+	cmp	r10, #3	@ bounds checking
+	bhi	err
+	ldr	r8, =4
+	mul	r10, r10, r8	@ indexing
+	add	r10, r10, #4
+	ldr	r0, =write
+	ldr	r1, [r11, r10]
+	bl	printf
+
+	@ WRITE Instruction
+	ldr	r0, =write
+	ldr	r1, [r11, #0]
 	bl	printf
 
 	b	.L1_pool	@ literal pool
@@ -41,14 +41,14 @@ main:
 
 .L1_pool:
 	@ Assignment
-	ldr	r9, [r11, #0]
-	cmp	r9, #3	@ bounds checking
+	ldr	r10, [r11, #40]
+	cmp	r10, #3	@ bounds checking
 	bhi	err
-	ldr	r5, =4
-	mul	r9, r9, r5	@ indexing
-	add	r9, r9, #4
-	ldr	r5, [r11, #20]
-	str	r5, [r11, r9]
+	ldr	r8, =4
+	mul	r10, r10, r8	@ indexing
+	add	r10, r10, #4
+	ldr	r8, [r11, #20]
+	str	r8, [r11, r10]
 
 	@ WRITE Instruction
 	ldr	r0, =write
@@ -56,14 +56,14 @@ main:
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r9, [r11, #0]
-	cmp	r9, #3	@ bounds checking
+	ldr	r10, [r11, #40]
+	cmp	r10, #3	@ bounds checking
 	bhi	err
-	ldr	r5, =4
-	mul	r9, r9, r5	@ indexing
-	add	r9, r9, #4
+	ldr	r8, =4
+	mul	r10, r10, r8	@ indexing
+	add	r10, r10, #4
 	ldr	r0, =write
-	ldr	r1, [r11, r9]
+	ldr	r1, [r11, r10]
 	bl	printf
 
 	ldr	r0, =0

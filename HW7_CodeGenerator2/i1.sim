@@ -1,0 +1,30 @@
+PROGRAM test;
+
+TYPE
+	A = ARRAY 10 OF INTEGER;
+	R = RECORD
+		a: A;
+		b: INTEGER;
+		END;
+	W = ARRAY 5 OF R;
+
+VAR
+	a: A;
+	r: R;
+	w: W;
+	i: INTEGER;
+	j: INTEGER;
+
+BEGIN
+(*
+	r.a[2] := 162;
+	WRITE r.a[2];
+	w[1].a[2] := -13;
+	r.a := w[1].a;
+	WRITE r.a[2]
+*)
+
+	a[i] := 3;
+	j := a[i+1]
+
+END test.

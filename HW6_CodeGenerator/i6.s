@@ -5,106 +5,47 @@
 main:
 	push	{fp, lr}
 
+	ldr	r11, .MEM	@ base register
 
-	@ READ Instruction
-	ldr 	r0, =read
-	ldr 	r1, =num
-	bl  	scanf
-	ldr 	r2, =num
-	ldr 	r2, [r2]
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =36
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r3, [r2]
+	@ Read
+	ldr	r0, =read
+	ldr	r1, =num
+	bl	scanf
+	ldr	r5, =num
+	ldr	r5, [r5]
+	str	r5, [r11, #40]
 
 	@ WRITE Instruction
-	ldr 	r2, .MEM
-	ldr 	r3, =36
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r1}
-	ldr 	r1, [r1]
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, [r11, #40]
+	bl	printf
 
-	@ READ Instruction
-	ldr 	r0, =read
-	ldr 	r1, =num
-	bl  	scanf
-	ldr 	r2, =num
-	ldr 	r2, [r2]
-	push	{r2}
-	ldr 	r2, =3
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r3, [r2]
+	@ Read
+	ldr	r0, =read
+	ldr	r1, =num
+	bl	scanf
+	ldr	r5, =num
+	ldr	r5, [r5]
+	str	r5, [r11, #36]
 
 	@ WRITE Instruction
-	ldr 	r2, =3
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r1}
-	ldr 	r1, [r1]
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, [r11, #36]
+	bl	printf
 
-	pop 	{fp, pc}
-
-
-true:
-	ldr 	r0, =1
-	bx  	lr
-
-false:
-	ldr 	r0, =0
-	bx  	lr
+	ldr	r0, =0
+	pop	{fp, pc}	@ end main
 
 err:
-	ldr 	r0, =stderr
-	ldr 	r0, [r0]
-	ldr 	r1, =emsg
-	bl  	fprintf
-	ldr 	r0, =1
-	bl  	exit
+	ldr	r0, =stderr
+	ldr	r0, [r0]
+	ldr	r1, =emsg
+	bl	fprintf
+	ldr	r0, =1
+	bl	exit	@ quit
 
 .MEM:
-	.word	pgmem
+	.word	pgmem	@ program memory
 
 	.data
 
@@ -115,7 +56,7 @@ read:
 	.asciz	"%d"
 
 emsg:
-	.asciz	"error: index out of bounds\n"
+	.asciz	"error: invalid number\n"
 
 num:
 	.word	0

@@ -14,7 +14,7 @@ main:
 	ldr 	r2, [r2]
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =40
+	ldr 	r3, =16
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
@@ -22,7 +22,7 @@ main:
 
 	@ WRITE Instruction
 	ldr 	r2, .MEM
-	ldr 	r3, =40
+	ldr 	r3, =16
 	add 	r2, r2, r3
 	push	{r2}
 	ldr 	r2, =1313
@@ -48,7 +48,7 @@ main:
 	ldr 	r2, [r2]
 	push	{r2}
 	ldr 	r2, .MEM
-	ldr 	r3, =40
+	ldr 	r3, =16
 	add 	r2, r2, r3
 	push	{r2}
 	pop 	{r2, r3}
@@ -56,7 +56,7 @@ main:
 
 	@ WRITE Instruction
 	ldr 	r2, .MEM
-	ldr 	r3, =40
+	ldr 	r3, =16
 	add 	r2, r2, r3
 	push	{r2}
 	ldr 	r2, =1313
@@ -74,6 +74,7 @@ main:
 	ldr 	r0, =write
 	bl  	printf
 
+	ldr 	r0, =0
 	pop 	{fp, pc}
 
 

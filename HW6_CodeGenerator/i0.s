@@ -5,28 +5,21 @@
 main:
 	push	{fp, lr}
 
+	ldr	r11, .MEM	@ base register
 
-	pop 	{fp, pc}
-
-
-true:
-	ldr 	r0, =1
-	bx  	lr
-
-false:
-	ldr 	r0, =0
-	bx  	lr
+	ldr	r0, =0
+	pop	{fp, pc}	@ end main
 
 err:
-	ldr 	r0, =stderr
-	ldr 	r0, [r0]
-	ldr 	r1, =emsg
-	bl  	fprintf
-	ldr 	r0, =1
-	bl  	exit
+	ldr	r0, =stderr
+	ldr	r0, [r0]
+	ldr	r1, =emsg
+	bl	fprintf
+	ldr	r0, =1
+	bl	exit	@ quit
 
 .MEM:
-	.word	pgmem
+	.word	pgmem	@ program memory
 
 	.data
 
@@ -37,7 +30,7 @@ read:
 	.asciz	"%d"
 
 emsg:
-	.asciz	"error: index out of bounds\n"
+	.asciz	"error: invalid number\n"
 
 num:
 	.word	0

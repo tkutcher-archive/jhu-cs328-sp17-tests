@@ -1,6 +1,6 @@
 
 
-PROGRAM i1;
+PROGRAM control;
 
 TYPE
 	A = ARRAY 4 OF INTEGER;
@@ -16,13 +16,5 @@ VAR
 	j: INTEGER;
 
 BEGIN
-WRITE i;
-j := 18;
-r.b := j;
-WRITE r.a[i];
-WRITE j;
-r.a[i] := r.b;
-WRITE r.b;
-WRITE r.a[i]
 
-END i1.
+END control.

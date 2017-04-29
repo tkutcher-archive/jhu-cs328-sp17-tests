@@ -1,0 +1,25 @@
+PROGRAM testprocs;
+
+CONST
+	val = 47;
+
+TYPE
+	ra = ARRAY 5 OF INTEGER;
+
+VAR
+	i: INTEGER;
+
+PROCEDURE getval(k, j: ra; q: INTEGER) : INTEGER;
+	VAR
+		a, b: INTEGER;
+
+	BEGIN
+		i := 2;
+		a := 1
+	RETURN val
+END getval;
+
+BEGIN
+	(*i := getval();*)
+	WRITE i
+END testprocs.

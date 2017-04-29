@@ -1,0 +1,47 @@
+PROGRAM BubbleSort;
+
+CONST
+	SIZE = 5;
+
+TYPE
+	A = ARRAY SIZE OF INTEGER;
+
+VAR
+	i: INTEGER;
+	j: INTEGER;
+	temp: INTEGER;
+	a: A;
+	b: A;
+
+BEGIN
+	i := 0;
+	WHILE i < SIZE DO
+		READ a[i];
+		i := i + 1
+	END;
+
+	i := 0;
+	j := SIZE;
+
+	WHILE j > 0 DO
+		i := 0;
+		WHILE i < j - 1 DO
+			IF a[i] > a[i+1] THEN
+				temp := a[i+1];
+				a[i+1] := a[i];
+				a[i] := temp
+			END;
+			i := i + 1
+		END;
+		j := j - 1
+	END;
+
+
+	i := 0;
+	b := a; (* just to test something else *)
+	WHILE i < SIZE DO
+		WRITE b[i];
+		i := i + 1
+	END
+
+END BubbleSort.

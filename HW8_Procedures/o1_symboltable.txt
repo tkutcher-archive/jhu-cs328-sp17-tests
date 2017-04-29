@@ -1,0 +1,67 @@
+SCOPE BEGIN
+  getval =>
+    PROC BEGIN
+      type:
+        INTEGER
+      formals:
+        SCOPE BEGIN
+          j =>
+            VAR BEGIN
+              type:
+                ARRAY BEGIN
+                  type:
+                    INTEGER
+                  length:
+                    5
+                END ARRAY
+            END VAR
+          k =>
+            VAR BEGIN
+              type:
+                ARRAY BEGIN
+                  type:
+                    INTEGER
+                  length:
+                    5
+                END ARRAY
+            END VAR
+          q =>
+            VAR BEGIN
+              type:
+                INTEGER
+            END VAR
+        END SCOPE
+      locals:
+        SCOPE BEGIN
+          a =>
+            VAR BEGIN
+              type:
+                INTEGER
+            END VAR
+          b =>
+            VAR BEGIN
+              type:
+                INTEGER
+            END VAR
+        END SCOPE
+    END PROC
+  i =>
+    VAR BEGIN
+      type:
+        INTEGER
+    END VAR
+  ra =>
+    ARRAY BEGIN
+      type:
+        INTEGER
+      length:
+        5
+    END ARRAY
+  val =>
+    CONST BEGIN
+      type:
+        INTEGER
+      value:
+        47
+    END CONST
+END SCOPE

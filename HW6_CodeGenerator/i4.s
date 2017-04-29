@@ -5,99 +5,66 @@
 main:
 	push	{fp, lr}
 
+	ldr	r11, .MEM	@ base register
 
 	@ Assignment
-	ldr 	r2, .MEM
-	ldr 	r3, =16
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =2
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
+	ldr	r9, =2
+	str	r9, [r11, #20]
 
 	@ IF Instruction
-	ldr 	r2, =6
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =16
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r2, [r2]
-	cmp 	r2, r3
-	blle	true
-	blgt	false
-	push	{r0}
-	pop 	{r2}
-	cmp 	r2, #1
-	bne 	.L1_skipt
-
+	ldr	r9, [r11, #20]
+	cmp	r9, #6
+	ldrle	r9, =1
+	ldrgt	r9, =0
+	cmp	r9, #1
+	bne	.L1_skipt
 	@ WRITE Instruction
-	ldr 	r2, =11
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
-	b   	.L2_skipf
+	ldr	r0, =write
+	ldr	r1, =11
+	bl	printf
+
+	b	.L2_skipf
 .L1_skipt:
 .L2_skipf:
 
 	@ IF Instruction
-	ldr 	r2, =2
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =16
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r2, [r2]
-	cmp 	r2, r3
-	blne	true
-	bleq	false
-	push	{r0}
-	pop 	{r2}
-	cmp 	r2, #1
-	bne 	.L3_skipt
-
+	ldr	r9, [r11, #20]
+	cmp	r9, #2
+	ldrne	r9, =1
+	ldreq	r9, =0
+	cmp	r9, #1
+	bne	.L3_skipt
 	@ WRITE Instruction
-	ldr 	r2, =13
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
-	b   	.L4_skipf
+	ldr	r0, =write
+	ldr	r1, =13
+	bl	printf
+
+	b	.L4_skipf
 .L3_skipt:
-
 	@ WRITE Instruction
-	ldr 	r2, =54
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, =54
+	bl	printf
+
+	b	.L5_pool	@ literal pool
+.ltorg
+
+.L5_pool:
 .L4_skipf:
 
-	pop 	{fp, pc}
-
-
-true:
-	ldr 	r0, =1
-	bx  	lr
-
-false:
-	ldr 	r0, =0
-	bx  	lr
+	ldr	r0, =0
+	pop	{fp, pc}	@ end main
 
 err:
-	ldr 	r0, =stderr
-	ldr 	r0, [r0]
-	ldr 	r1, =emsg
-	bl  	fprintf
-	ldr 	r0, =1
-	bl  	exit
+	ldr	r0, =stderr
+	ldr	r0, [r0]
+	ldr	r1, =emsg
+	bl	fprintf
+	ldr	r0, =1
+	bl	exit	@ quit
 
 .MEM:
-	.word	pgmem
+	.word	pgmem	@ program memory
 
 	.data
 
@@ -108,7 +75,7 @@ read:
 	.asciz	"%d"
 
 emsg:
-	.asciz	"error: index out of bounds\n"
+	.asciz	"error: invalid number\n"
 
 num:
 	.word	0

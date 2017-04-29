@@ -5,309 +5,70 @@
 main:
 	push	{fp, lr}
 
+	ldr	r11, .MEM	@ base register
 
 	@ Assignment
-	ldr 	r2, =1
-	push	{r2}
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =2		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =12
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =2		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =3
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
+	ldr	r5, =3
+	str	r5, [r11, #8]
 
 	@ Assignment
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =2		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =12
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =8
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
+	ldr	r5, =8
+	str	r5, [r11, #0]
 
 	@ Assignment
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =2		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =12
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =2		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =7
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
+	ldr	r5, =7
+	str	r5, [r11, #4]
 
 	@ Assignment
-	ldr 	r2, .MEM
-	ldr 	r3, =24
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	mov 	r1, r2			@ tracks memory address
-	ldr 	r0, =24			@ address to stop copying
-	add 	r0, r0, r1
-.L1_start:
-	cmp 	r0, r1
-	beq 	.L2_end
-	ldr 	r2, [r1]
-	str 	r2, [r3]
-	add 	r3, r3, #4		@ next address to copy to
-	add 	r1, r1, #4		@ next address to copy from
-	b    	.L1_start
-.L2_end:
+	ldr	r5, =0	@ from
+	ldr	r9, =24	@ to
+	add	r3, r5, #24	@ stop
+.L1_cpy_s:
+	cmp	r5, r3
+	beq	.L2_cpy_f
+	ldr	r6, [r11, r5]
+	str	r6, [r11, r9]
+	add	r5, r5, #4	@ ++from
+	add	r9, r9, #4	@ ++to
+	b	.L1_cpy_s
+.L2_cpy_f:
 
 	@ Assignment
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =2		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =12
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =2		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =13
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
+	ldr	r5, =13
+	str	r5, [r11, #4]
+
+	b	.L3_pool	@ literal pool
+.ltorg
+
+.L3_pool:
+	@ WRITE Instruction
+	ldr	r0, =write
+	ldr	r1, [r11, #8]
+	bl	printf
 
 	@ WRITE Instruction
-	ldr 	r2, =1
-	push	{r2}
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =2		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =12
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =2		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r1}
-	ldr 	r1, [r1]
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, [r11, #0]
+	bl	printf
 
 	@ WRITE Instruction
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =2		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =12
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r1}
-	ldr 	r1, [r1]
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, [r11, #28]
+	bl	printf
 
-	@ WRITE Instruction
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =24
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =2		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =12
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =2		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2}
-	ldr 	r3, =0
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r1}
-	ldr 	r1, [r1]
-	ldr 	r0, =write
-	bl  	printf
-
-	pop 	{fp, pc}
-
-
-true:
-	ldr 	r0, =1
-	bx  	lr
-
-false:
-	ldr 	r0, =0
-	bx  	lr
+	ldr	r0, =0
+	pop	{fp, pc}	@ end main
 
 err:
-	ldr 	r0, =stderr
-	ldr 	r0, [r0]
-	ldr 	r1, =emsg
-	bl  	fprintf
-	ldr 	r0, =1
-	bl  	exit
+	ldr	r0, =stderr
+	ldr	r0, [r0]
+	ldr	r1, =emsg
+	bl	fprintf
+	ldr	r0, =1
+	bl	exit	@ quit
 
 .MEM:
-	.word	pgmem
+	.word	pgmem	@ program memory
 
 	.data
 
@@ -318,7 +79,7 @@ read:
 	.asciz	"%d"
 
 emsg:
-	.asciz	"error: index out of bounds\n"
+	.asciz	"error: invalid number\n"
 
 num:
 	.word	0

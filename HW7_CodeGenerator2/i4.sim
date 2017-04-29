@@ -1,0 +1,29 @@
+PROGRAM threedra;
+
+TYPE
+	T = ARRAY 4 OF ARRAY 6 OF ARRAY 6 OF INTEGER;
+
+VAR
+	t: T;
+	u: T;
+	i: INTEGER;
+	j: INTEGER;
+	k: INTEGER;
+
+BEGIN
+	WRITE 2;
+	WRITE 5;
+	WRITE 1;
+	WRITE t[2,5,1];
+
+	READ i;
+	READ j;
+	READ k;
+	READ t[i,j,k];
+	WRITE t[2][5][1];
+
+	u := t;
+	WRITE u[i,j,k];
+	WRITE t[i,j,k]
+
+END threedra.

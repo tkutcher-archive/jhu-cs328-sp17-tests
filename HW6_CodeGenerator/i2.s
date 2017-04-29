@@ -5,257 +5,155 @@
 main:
 	push	{fp, lr}
 
+	ldr	r11, .MEM	@ base register
 
 	@ WRITE Instruction
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r1}
-	ldr 	r1, [r1]
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, [r11, #40]
+	bl	printf
 
 	@ WRITE Instruction
-	ldr 	r2, =0
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, =0
+	bl	printf
 
 	@ Assignment
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =9
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
+	ldr	r7, =9
+	str	r7, [r11, #40]
 
 	@ WRITE Instruction
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r1}
-	ldr 	r1, [r1]
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, [r11, #40]
+	bl	printf
 
 	@ WRITE Instruction
-	ldr 	r2, =9
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, =9
+	bl	printf
+
+	b	.L1_pool	@ literal pool
+.ltorg
+
+.L1_pool:
+	@ WRITE Instruction
+	ldr	r7, [r11, #40]
+	add	r7, r7, #4
+	ldr	r0, =write
+	mov	r1, r7
+	bl	printf
 
 	@ WRITE Instruction
-	ldr 	r2, =4
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r2, [r2]
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
-
-	@ WRITE Instruction
-	ldr 	r2, =13
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, =13
+	bl	printf
 
 	@ Assignment
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =47
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
+	ldr	r7, =47
+	str	r7, [r11, #40]
 
 	@ WRITE Instruction
-	ldr 	r2, =1
-	push	{r2}
-	ldr 	r2, =2
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r2, [r2]
-	sub 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r7, [r11, #40]
+	sub	r7, r7, #2
+	add	r7, r7, #1
+	ldr	r0, =write
+	mov	r1, r7
+	bl	printf
 
 	@ WRITE Instruction
-	ldr 	r2, =46
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, =46
+	bl	printf
+
+	b	.L2_pool	@ literal pool
+.ltorg
+
+.L2_pool:
+	@ Assignment
+	ldr	r7, =2
+	str	r7, [r11, #40]
 
 	@ Assignment
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =2
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
+	ldr	r7, [r11, #40]
+	ldr	r9, =11
+	mul	r7, r7, r9
+	add	r7, r7, #1
+	str	r7, [r11, #0]
+
+	@ WRITE Instruction
+	ldr	r0, =write
+	ldr	r1, [r11, #0]
+	bl	printf
+
+	@ WRITE Instruction
+	ldr	r0, =write
+	ldr	r1, =23
+	bl	printf
 
 	@ Assignment
-	ldr 	r2, .MEM
-	ldr 	r3, =36
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =1
-	push	{r2}
-	ldr 	r2, =11
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r2, [r2]
-	mul 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
+	ldr	r7, =5
+	str	r7, [r11, #0]
 
-	@ WRITE Instruction
-	ldr 	r2, .MEM
-	ldr 	r3, =36
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r1}
-	ldr 	r1, [r1]
-	ldr 	r0, =write
-	bl  	printf
+	b	.L3_pool	@ literal pool
+.ltorg
 
-	@ WRITE Instruction
-	ldr 	r2, =23
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
-
+.L3_pool:
 	@ Assignment
-	ldr 	r2, .MEM
-	ldr 	r3, =36
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =5
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
-
-	@ Assignment
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =27
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
+	ldr	r7, =27
+	str	r7, [r11, #40]
 
 	@ WRITE Instruction
-	ldr 	r2, .MEM
-	ldr 	r3, =36
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r2, [r2]
-	ldr 	r3, [r3]
-	mov 	r0, r2
-	mov 	r1, r3
-	bl  	__aeabi_idiv
-	mov 	r2, r0
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r7, [r11, #40]
+	ldr	r9, [r11, #0]
+	mov	r0, r7
+	mov	r1, r9
+	cmp	r1, #0
+	beq	err	@ division by zero
+	bl	__aeabi_idiv
+	mov	r7, r0
+	ldr	r0, =write
+	mov	r1, r7
+	bl	printf
 
 	@ WRITE Instruction
-	ldr 	r2, =5
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, =5
+	bl	printf
 
 	@ WRITE Instruction
-	ldr 	r2, .MEM
-	ldr 	r3, =36
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r2, [r2]
-	ldr 	r3, [r3]
-	mov 	r0, r2
-	mov 	r1, r3
-	bl  	__aeabi_idivmod
-	mov 	r2, r1
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r7, [r11, #40]
+	ldr	r9, [r11, #0]
+	mov	r0, r7
+	mov	r1, r9
+	cmp	r1, #0
+	beq	err	@ division by zero
+	bl	__aeabi_idivmod
+	mov	r7, r1
+	ldr	r0, =write
+	mov	r1, r7
+	bl	printf
 
 	@ WRITE Instruction
-	ldr 	r2, =2
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, =2
+	bl	printf
 
-	pop 	{fp, pc}
+	b	.L4_pool	@ literal pool
+.ltorg
 
-
-true:
-	ldr 	r0, =1
-	bx  	lr
-
-false:
-	ldr 	r0, =0
-	bx  	lr
+.L4_pool:
+	ldr	r0, =0
+	pop	{fp, pc}	@ end main
 
 err:
-	ldr 	r0, =stderr
-	ldr 	r0, [r0]
-	ldr 	r1, =emsg
-	bl  	fprintf
-	ldr 	r0, =1
-	bl  	exit
+	ldr	r0, =stderr
+	ldr	r0, [r0]
+	ldr	r1, =emsg
+	bl	fprintf
+	ldr	r0, =1
+	bl	exit	@ quit
 
 .MEM:
-	.word	pgmem
+	.word	pgmem	@ program memory
 
 	.data
 
@@ -266,7 +164,7 @@ read:
 	.asciz	"%d"
 
 emsg:
-	.asciz	"error: index out of bounds\n"
+	.asciz	"error: invalid number\n"
 
 num:
 	.word	0

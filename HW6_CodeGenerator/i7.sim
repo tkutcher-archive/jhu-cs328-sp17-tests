@@ -6,16 +6,31 @@ TYPE
 		a: A;
 		b: INTEGER;
 		END;
+	T = ARRAY 5 OF ARRAY 5 OF INTEGER;
 
 VAR
 	a: A;
 	r: R;
 	i: INTEGER;
 	j: INTEGER;
+	t: T;
 
 BEGIN
-
+(*
 	READ i;
-	READ r.a[i]
+	READ r.a[i];
+	WRITE r.a[i];
+	WRITE r.a[4];
+
+	a[1] := 2;
+	a[a[1]] := 5;
+	a[4] := a[1] + a[2];
+	WRITE a[4]
+*)
+	i := 2;
+	j := 1;
+	t[i][i+j] := 16;
+	WRITE t[i][i+j];
+	WRITE t[2][3]
 
 END read.

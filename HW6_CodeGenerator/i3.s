@@ -5,390 +5,136 @@
 main:
 	push	{fp, lr}
 
+	ldr	r11, .MEM	@ base register
 
 	@ Assignment
-	ldr 	r2, =1
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =20
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =2
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
+	ldr	r10, =2
+	str	r10, [r11, #4]
 
 	@ IF Instruction
-	ldr 	r2, =6
-	push	{r2}
-	ldr 	r2, =6
-	push	{r2}
-	pop 	{r2, r3}
-	cmp 	r2, r3
-	bleq	true
-	blne	false
-	push	{r0}
-	pop 	{r2}
-	cmp 	r2, #1
-	bne 	.L1_skipt
-
+	@ constant condition, true insts only
 	@ WRITE Instruction
-	ldr 	r2, =1
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, =1
+	bl	printf
 
 	@ IF Instruction
-	ldr 	r2, =3
-	push	{r2}
-	ldr 	r2, =4
-	push	{r2}
-	pop 	{r2, r3}
-	cmp 	r2, r3
-	blge	true
-	bllt	false
-	push	{r0}
-	pop 	{r2}
-	cmp 	r2, #1
-	bne 	.L3_skipt
-
+	@ constant condition, true insts only
 	@ WRITE Instruction
-	ldr 	r2, =1
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
-	b   	.L4_skipf
-.L3_skipt:
-.L4_skipf:
-	b   	.L2_skipf
-.L1_skipt:
+	ldr	r0, =write
+	ldr	r1, =1
+	bl	printf
 
-	@ WRITE Instruction
-	ldr 	r2, =-1
-	push	{r2}
-	pop 	{r1}
-	ldr 	r0, =write
-	bl  	printf
-.L2_skipf:
 
-	@ READ Instruction
-	ldr 	r0, =read
-	ldr 	r1, =num
-	bl  	scanf
-	ldr 	r2, =num
-	ldr 	r2, [r2]
-	push	{r2}
-	ldr 	r2, =3
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =20
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r3, [r2]
+
+	b	.L5_pool	@ literal pool
+.ltorg
+
+.L5_pool:
+	@ Read
+	ldr	r0, =read
+	ldr	r1, =num
+	bl	scanf
+	ldr	r10, =num
+	ldr	r10, [r10]
+	str	r10, [r11, #12]
 
 	@ IF Instruction
-	ldr 	r2, =3
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =20
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =20
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r2, [r2]
-	ldr 	r3, [r3]
-	cmp 	r2, r3
-	bllt	true
-	blge	false
-	push	{r0}
-	pop 	{r2}
-	cmp 	r2, #1
-	bne 	.L5_skipt
-
-	@ REPEAT Instruction
-	ldr 	r2, =0
-.L7_start:
-	cmp 	r2, #0
-	bne 	.L8_end
-
+	ldr	r10, [r11, #0]
+	ldr	r5, [r11, #12]
+	cmp	r10, r5
+	ldrlt	r10, =1
+	ldrge	r10, =0
+	cmp	r10, #1
+	bne	.L6_skipt
+	@ Repeat Instruction
+	ldr	r5, =0	@ comparison reg
+.L8_start:
+	cmp	r5, #0
+	bne	.L9_end
 	@ Assignment
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =10
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
+	ldr	r10, =10
+	str	r10, [r11, #40]
 
 	@ IF Instruction
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r2, [r2]
-	cmp 	r2, r3
-	blgt	true
-	blle	false
-	push	{r0}
-	pop 	{r2}
-	cmp 	r2, #1
-	bne 	.L9_skipt
-
-	@ REPEAT Instruction
-	ldr 	r2, =0
-.L11_start:
-	cmp 	r2, #0
-	bne 	.L12_end
-
+	ldr	r10, [r11, #40]
+	cmp	r10, #0
+	ldrgt	r10, =1
+	ldrle	r10, =0
+	cmp	r10, #1
+	bne	.L10_skipt
+	@ Repeat Instruction
+	ldr	r6, =0	@ comparison reg
+.L12_start:
+	cmp	r6, #0
+	bne	.L13_end
 	@ WRITE Instruction
-	ldr 	r2, =1
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =20
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r1}
-	ldr 	r1, [r1]
-	ldr 	r0, =write
-	bl  	printf
+	ldr	r0, =write
+	ldr	r1, [r11, #4]
+	bl	printf
 
 	@ Assignment
-	ldr 	r2, =1
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =20
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =2
-	push	{r2}
-	ldr 	r2, =1
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =20
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r2, [r2]
-	mul 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
+	ldr	r10, [r11, #4]
+	ldr	r7, =2
+	mul	r10, r10, r7
+	str	r10, [r11, #4]
 
 	@ Assignment
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =1
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r2, [r2]
-	sub 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =40
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r2, [r2]
-	cmp 	r2, r3
-	blle	true
-	blgt	false
-	push	{r0}
-	pop 	{r2}
-	b   	.L11_start
-.L12_end:
-	b   	.L10_skipf
-.L9_skipt:
-.L10_skipf:
+	ldr	r10, [r11, #40]
+	sub	r10, r10, #1
+	str	r10, [r11, #40]
+
+	b	.L14_pool	@ literal pool
+.ltorg
+
+.L14_pool:
+	ldr	r10, [r11, #40]
+	cmp	r10, #0
+	ldrle	r10, =1
+	ldrgt	r10, =0
+	mov	r6, r10	@ result
+	b	.L12_start
+.L13_end:
+
+	b	.L11_skipf
+.L10_skipt:
+.L11_skipf:
 
 	@ Assignment
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =20
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =1
-	push	{r2}
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =20
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r2, [r2]
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	str 	r2, [r3]
-	ldr 	r2, =3
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =20
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	ldr 	r2, =0
-	push	{r2}
-	ldr 	r2, .MEM
-	ldr 	r3, =20
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r4, =4		@ Bounds checking
-	cmp 	r3, r4
-	bhi 	err
-	beq 	err
-	ldr 	r4, =4
-	mul 	r3, r3, r4
-	add 	r2, r2, r3
-	push	{r2}
-	pop 	{r2, r3}
-	ldr 	r2, [r2]
-	ldr 	r3, [r3]
-	cmp 	r2, r3
-	blge	true
-	bllt	false
-	push	{r0}
-	pop 	{r2}
-	b   	.L7_start
-.L8_end:
-	b   	.L6_skipf
-.L5_skipt:
-.L6_skipf:
+	ldr	r10, [r11, #0]
+	add	r10, r10, #1
+	str	r10, [r11, #0]
 
-	pop 	{fp, pc}
+	ldr	r10, [r11, #0]
+	ldr	r5, [r11, #12]
+	cmp	r10, r5
+	ldrge	r10, =1
+	ldrlt	r10, =0
+	mov	r5, r10	@ result
+	b	.L8_start
+.L9_end:
 
+	b	.L7_skipf
+.L6_skipt:
+.L7_skipf:
 
-true:
-	ldr 	r0, =1
-	bx  	lr
+	b	.L15_pool	@ literal pool
+.ltorg
 
-false:
-	ldr 	r0, =0
-	bx  	lr
+.L15_pool:
+	ldr	r0, =0
+	pop	{fp, pc}	@ end main
 
 err:
-	ldr 	r0, =stderr
-	ldr 	r0, [r0]
-	ldr 	r1, =emsg
-	bl  	fprintf
-	ldr 	r0, =1
-	bl  	exit
+	ldr	r0, =stderr
+	ldr	r0, [r0]
+	ldr	r1, =emsg
+	bl	fprintf
+	ldr	r0, =1
+	bl	exit	@ quit
 
 .MEM:
-	.word	pgmem
+	.word	pgmem	@ program memory
 
 	.data
 
@@ -399,7 +145,7 @@ read:
 	.asciz	"%d"
 
 emsg:
-	.asciz	"error: index out of bounds\n"
+	.asciz	"error: invalid number\n"
 
 num:
 	.word	0
