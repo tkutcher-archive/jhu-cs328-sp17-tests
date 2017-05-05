@@ -1,0 +1,23 @@
+
+
+PROGRAM i6;
+
+TYPE
+	A = ARRAY 4 OF INTEGER;
+	R = RECORD
+		a: A;
+		b: INTEGER;
+		END;
+
+VAR
+	a: A;
+	r: R;
+	i: INTEGER;
+	j: INTEGER;
+
+BEGIN
+	i := 4;
+	WRITE 6 MOD i;
+	WRITE 2
+
+END i6.

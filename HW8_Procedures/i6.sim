@@ -1,0 +1,29 @@
+PROGRAM caller;
+
+VAR
+	i: INTEGER;
+
+PROCEDURE add(a, b: INTEGER) : INTEGER;
+	RETURN a + b
+END add;
+
+PROCEDURE addthree(a, b, c: INTEGER) : INTEGER;
+	VAR
+		buf: INTEGER;
+	BEGIN
+		buf := add(a, b);
+		buf := buf + c
+	RETURN buf
+END addthree;
+
+
+BEGIN
+	WRITE addthree(4, 5, 6);
+	WRITE 15;
+	i := add(10, 8);
+	WRITE i;
+	WRITE 18;
+	WRITE addthree(addthree(1,2,3), 4, add(5,6));
+	WRITE 21
+
+END caller.

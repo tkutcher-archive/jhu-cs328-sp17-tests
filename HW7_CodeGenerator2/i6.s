@@ -1,5 +1,5 @@
 	.text
-	.comm	pgmem,312,4
+	.comm	pgmem,44,4
 
 
 	.global	main
@@ -11,27 +11,25 @@ main:
 	ldr	r9, .MEM	@ base register
 
 	@ Assignment
-	ldr	r5, =308
-	ldr	r10, [r9, r5]
-	cmp	r10, #9	@ bounds checking
-	bhi	err
-	ldr	r5, =4
-	mul	r10, r10, r5	@ indexing
-	add	r10, r10, #268
-	ldr	r5, =3
-	str	r5, [r9, r10]
+	ldr	r8, =4
+	str	r8, [r9, #0]
 
-	@ Assignment
-	ldr	r5, =308
-	ldr	r10, [r9, r5]
-	add	r10, r10, #1
-	cmp	r10, #9	@ bounds checking
-	bhi	err
-	ldr	r5, =4
-	mul	r10, r10, r5	@ indexing
-	add	r10, r10, #268
-	ldr	r5, [r9, r10]
-	str	r5, [r9, #0]
+	@ WRITE Instruction
+	ldr	r0, =6
+	ldr	r8, [r9, #0]
+	mov	r1, r8
+	cmp	r1, #0
+	beq	err	@ division by zero
+	bl	__aeabi_idivmod
+	mov	r8, r1
+	mov	r1, r8
+	ldr	r0, =write
+	bl	printf
+
+	@ WRITE Instruction
+	ldr	r1, =2
+	ldr	r0, =write
+	bl	printf
 
 	ldr	r0, =0
 	ldmfd	sp!, {fp, pc}	@ end main

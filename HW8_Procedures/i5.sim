@@ -1,0 +1,23 @@
+PROGRAM passbyref;
+
+TYPE
+	array = ARRAY 10 OF INTEGER;
+
+VAR
+	i: INTEGER;
+	r: array;
+	s: array;
+
+PROCEDURE set(a, b: array; index, val: INTEGER);
+	BEGIN
+		a[index] := val;
+		b[index] := val
+END set;
+
+BEGIN
+	READ i;
+	set(r, s, 1, i);
+	WRITE r[0]; WRITE r[1]; WRITE r[2]; WRITE r[3]; WRITE r[4];
+	WRITE s[0]; WRITE s[1]; WRITE s[2]; WRITE s[3]; WRITE s[4]
+
+END passbyref.

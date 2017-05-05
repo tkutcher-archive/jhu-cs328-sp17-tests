@@ -1,17 +1,20 @@
 	.text
 	.comm	pgmem,312,4
+
+
 	.global	main
 
 main:
-	push	{fp, lr}
+	stmfd	sp!, {fp, lr}
+	add	fp, sp, #4
 
-	ldr	r11, .MEM	@ base register
+	ldr	r9, .MEM	@ base register
 
 	@ IF Instruction
 	@ constant condition, true insts only
 	@ WRITE Instruction
-	ldr	r0, =write
 	ldr	r1, =16
+	ldr	r0, =write
 	bl	printf
 
 
@@ -24,11 +27,12 @@ main:
 	bl	scanf
 	ldr	r8, =num
 	ldr	r8, [r8]
-	str	r8, [r11, #0]
+	str	r8, [r9, #44]
 
 	@ IF Instruction
-	ldr	r8, [r11, #48]
-	ldr	r5, [r11, #0]
+	ldr	r5, =308
+	ldr	r8, [r9, r5]
+	ldr	r5, [r9, #44]
 	cmp	r8, r5
 	ldrlt	r8, =1
 	ldrge	r8, =0
@@ -40,8 +44,9 @@ main:
 	cmp	r5, #0
 	bne	.L8_end
 	@ WRITE Instruction
+	ldr	r8, =308
+	ldr	r1, [r9, r8]
 	ldr	r0, =write
-	ldr	r1, [r11, #48]
 	bl	printf
 
 	b	.L9_pool	@ literal pool
@@ -49,12 +54,15 @@ main:
 
 .L9_pool:
 	@ Assignment
-	ldr	r8, [r11, #48]
+	ldr	r10, =308
+	ldr	r8, [r9, r10]
 	add	r8, r8, #1
-	str	r8, [r11, #48]
+	ldr	r10, =308
+	str	r8, [r9, r10]
 
-	ldr	r8, [r11, #48]
-	ldr	r5, [r11, #0]
+	ldr	r5, =308
+	ldr	r8, [r9, r5]
+	ldr	r5, [r9, #44]
 	cmp	r8, r5
 	ldrge	r8, =1
 	ldrlt	r8, =0
@@ -67,7 +75,7 @@ main:
 .L6_skipf:
 
 	ldr	r0, =0
-	pop	{fp, pc}	@ end main
+	ldmfd	sp!, {fp, pc}	@ end main
 
 err:
 	ldr	r0, =stderr

@@ -1,0 +1,19 @@
+PROGRAM factorial;
+
+PROCEDURE fact(a: INTEGER) : INTEGER;
+VAR q : INTEGER;
+BEGIN
+    IF a = 0 THEN
+       q := 1
+    ELSE
+       q := a * fact(a-1)
+    END
+RETURN q
+END fact;
+
+BEGIN
+WRITE fact(6);
+WRITE fact(4);
+WRITE fact(2);
+WRITE fact(0)
+END factorial.

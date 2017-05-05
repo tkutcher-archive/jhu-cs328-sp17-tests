@@ -7,21 +7,18 @@ VAR
 	i: INTEGER;
 	r: array;
 
-PROCEDURE add(a, b: INTEGER) : INTEGER;
+PROCEDURE blah() : INTEGER;
 	VAR
 		k: INTEGER;
 	BEGIN
-		k := i
-	RETURN a+b+k
-END add;
-
-PROCEDURE assign(ra: array; index, val: INTEGER);
-	BEGIN
-		ra[index] := val
-END assign;
+		k := 16;
+		k := k MOD 9
+	RETURN k * 2
+END blah;
 
 BEGIN
-	WRITE add(2, i);
-	assign(r, 3, 47)
+	i := blah();
+	WRITE i;
+	WRITE 14
 
 END addproc.

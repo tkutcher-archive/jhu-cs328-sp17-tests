@@ -1,0 +1,38 @@
+PROGRAM sort;
+
+TYPE A = ARRAY 4 OF INTEGER;
+VAR i : INTEGER;
+VAR a : A;
+PROCEDURE sortProc(a: A);
+VAR
+   i, j, m, tmp: INTEGER;
+BEGIN
+    WHILE j < 3 DO
+        m := j;
+        i := j + 1;
+        WHILE i < 4 DO
+            IF a[i] < a[m] THEN
+               m := i
+            END;
+            i := i + 1
+        END;
+        IF m # j THEN
+            tmp := a[j];
+            a[j] := a[m];
+            a[m] := tmp
+        END;
+        j := j + 1
+    END
+END sortProc;
+
+BEGIN
+    a[0] := 3;
+    a[1] := 1;
+    a[2] := 4;
+    a[3] := 2;
+    sortProc(a);
+    WHILE i < 4 DO
+        WRITE a[i];
+        i := i + 1
+    END
+END sort.

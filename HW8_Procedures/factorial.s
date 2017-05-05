@@ -1,35 +1,44 @@
 	.text
-	.comm	pgmem,44,4
+	.comm	pgmem,0,4
 
 	.align	2
-blah:
+fact:
 	stmfd	sp!, {fp, lr}	@ caller
 	add	fp, sp, #4
-	sub	sp, sp, #8	@ local vars and r0-r3
+	sub	sp, sp, #12	@ local vars and r0-r3
 	stmfd	sp!, {r4-r8, r10}	@ save var registers
+	str	r0, [fp, #-12]
 	@ Initialize stack frame for locals
-	mov	r8, #0
-	str	r8, [fp, #-8]
+	mov	r4, #0
+	str	r4, [fp, #-8]
 	@ begin procedure instructions
+	@ IF Instruction
+	ldr	r4, [fp, #-12]
+	cmp	r4, #0
+	ldreq	r4, =1
+	ldrne	r4, =0
+	cmp	r4, #1
+	bne	.L1_skipt
 	@ Assignment
-	ldr	r8, =16
-	str	r8, [fp, #-8]
+	ldr	r4, =1
+	str	r4, [fp, #-8]
 
+	b	.L2_skipf
+.L1_skipt:
 	@ Assignment
-	ldr	r8, [fp, #-8]
-	ldr	r1, =9
-	mov	r0, r8
-	cmp	r1, #0
-	beq	err	@ division by zero
-	bl	__aeabi_idivmod
-	mov	r8, r1
-	str	r8, [fp, #-8]
+	ldr	r4, [fp, #-12]
+	sub	r4, r4, #1
+	push	{r4}
+	pop	{r0}
+	bl	fact
+	ldr	r4, [fp, #-12]
+	mul	r4, r4, r0
+	str	r4, [fp, #-8]
+
+.L2_skipf:
 
 	@ begin return expression
-	ldr	r8, [fp, #-8]
-	ldr	r10, =2
-	mul	r8, r8, r10
-	mov	r0, r8
+	ldr	r0, [fp, #-8]
 	ldmfd	sp!, {r4-r8, r10}	@ restore var registers
 	sub	sp, fp, #4
 	ldmfd	sp!, {fp, pc}	@ return
@@ -43,24 +52,46 @@ main:
 
 	ldr	r9, .MEM	@ base register
 
-	@ Assignment
-	bl	blah
-	str	r0, [r9, #40]
-
 	@ WRITE Instruction
-	ldr	r1, [r9, #40]
+	ldr	r0, =6
+	push	{r0}
+	pop	{r0}
+	bl	fact
+	mov	r1, r0
 	ldr	r0, =write
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, =14
+	ldr	r0, =4
+	push	{r0}
+	pop	{r0}
+	bl	fact
+	mov	r1, r0
 	ldr	r0, =write
 	bl	printf
 
-	b	.L1_pool	@ literal pool
+	b	.L3_pool	@ literal pool
 .ltorg
 
-.L1_pool:
+.L3_pool:
+	@ WRITE Instruction
+	ldr	r0, =2
+	push	{r0}
+	pop	{r0}
+	bl	fact
+	mov	r1, r0
+	ldr	r0, =write
+	bl	printf
+
+	@ WRITE Instruction
+	ldr	r0, =0
+	push	{r0}
+	pop	{r0}
+	bl	fact
+	mov	r1, r0
+	ldr	r0, =write
+	bl	printf
+
 	ldr	r0, =0
 	ldmfd	sp!, {fp, pc}	@ end main
 

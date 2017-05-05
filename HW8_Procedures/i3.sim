@@ -1,0 +1,20 @@
+PROGRAM sumproc;
+
+TYPE
+	array = ARRAY 10 OF INTEGER;
+
+VAR
+	i: INTEGER;
+	r: array;
+
+PROCEDURE sum(a, b, c, d, e, f, g: INTEGER) : INTEGER;
+	VAR
+		h: INTEGER;
+	RETURN a+b+c+d+e+f+g+h
+END sum;
+
+BEGIN
+	WRITE sum(18, 19, 20, 21, 22, 23, 24);
+	WRITE 1
+
+END sumproc.

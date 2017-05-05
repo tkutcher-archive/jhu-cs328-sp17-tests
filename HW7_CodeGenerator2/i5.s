@@ -1,39 +1,42 @@
 	.text
 	.comm	pgmem,44,4
+
+
 	.global	main
 
 main:
-	push	{fp, lr}
+	stmfd	sp!, {fp, lr}
+	add	fp, sp, #4
 
-	ldr	r11, .MEM	@ base register
+	ldr	r9, .MEM	@ base register
 
 	@ WRITE Instruction
+	ldr	r1, [r9, #36]
 	ldr	r0, =write
-	ldr	r1, [r11, #40]
 	bl	printf
 
 	@ Assignment
 	ldr	r10, =18
-	str	r10, [r11, #0]
+	str	r10, [r9, #40]
 
 	@ Assignment
-	ldr	r10, [r11, #0]
-	str	r10, [r11, #20]
+	ldr	r10, [r9, #40]
+	str	r10, [r9, #32]
 
 	@ WRITE Instruction
-	ldr	r10, [r11, #40]
+	ldr	r10, [r9, #36]
 	cmp	r10, #3	@ bounds checking
 	bhi	err
-	ldr	r8, =4
-	mul	r10, r10, r8	@ indexing
-	add	r10, r10, #4
+	ldr	r5, =4
+	mul	r10, r10, r5	@ indexing
+	add	r10, r10, #16
+	ldr	r1, [r9, r10]
 	ldr	r0, =write
-	ldr	r1, [r11, r10]
 	bl	printf
 
 	@ WRITE Instruction
+	ldr	r1, [r9, #40]
 	ldr	r0, =write
-	ldr	r1, [r11, #0]
 	bl	printf
 
 	b	.L1_pool	@ literal pool
@@ -41,33 +44,33 @@ main:
 
 .L1_pool:
 	@ Assignment
-	ldr	r10, [r11, #40]
+	ldr	r10, [r9, #36]
 	cmp	r10, #3	@ bounds checking
 	bhi	err
-	ldr	r8, =4
-	mul	r10, r10, r8	@ indexing
-	add	r10, r10, #4
-	ldr	r8, [r11, #20]
-	str	r8, [r11, r10]
+	ldr	r5, =4
+	mul	r10, r10, r5	@ indexing
+	add	r10, r10, #16
+	ldr	r5, [r9, #32]
+	str	r5, [r9, r10]
 
 	@ WRITE Instruction
+	ldr	r1, [r9, #32]
 	ldr	r0, =write
-	ldr	r1, [r11, #20]
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r10, [r11, #40]
+	ldr	r10, [r9, #36]
 	cmp	r10, #3	@ bounds checking
 	bhi	err
-	ldr	r8, =4
-	mul	r10, r10, r8	@ indexing
-	add	r10, r10, #4
+	ldr	r5, =4
+	mul	r10, r10, r5	@ indexing
+	add	r10, r10, #16
+	ldr	r1, [r9, r10]
 	ldr	r0, =write
-	ldr	r1, [r11, r10]
 	bl	printf
 
 	ldr	r0, =0
-	pop	{fp, pc}	@ end main
+	ldmfd	sp!, {fp, pc}	@ end main
 
 err:
 	ldr	r0, =stderr

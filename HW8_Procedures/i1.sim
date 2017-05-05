@@ -9,7 +9,7 @@ TYPE
 VAR
 	i: INTEGER;
 
-PROCEDURE getval(k, j: ra; q: INTEGER) : INTEGER;
+PROCEDURE getval() : INTEGER;
 	VAR
 		a, b: INTEGER;
 
@@ -20,6 +20,6 @@ PROCEDURE getval(k, j: ra; q: INTEGER) : INTEGER;
 END getval;
 
 BEGIN
-	(*i := getval();*)
+	i := getval();
 	WRITE i
 END testprocs.
