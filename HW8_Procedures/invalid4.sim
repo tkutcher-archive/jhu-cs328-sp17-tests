@@ -1,0 +1,30 @@
+(* Actuals and formals don't match *)
+PROGRAM X;
+	
+	VAR b : INTEGER;
+	VAR array : ARRAY 5 OF INTEGER;
+
+	PROCEDURE increment(a : INTEGER) : INTEGER ;
+		
+		VAR
+
+		x, y: INTEGER;
+
+		BEGIN
+			x := x + 1;
+			READ y;
+			x := y + 1
+			RETURN x
+		END increment;
+
+	PROCEDURE a() : INTEGER;
+	END a;
+
+	PROCEDURE c() ;
+	END c;
+
+BEGIN
+
+	b := increment(array)
+
+END X.

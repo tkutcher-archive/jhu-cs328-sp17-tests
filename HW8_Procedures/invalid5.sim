@@ -1,0 +1,29 @@
+(* Actuals in wrong order *)
+
+PROGRAM addproc;
+
+TYPE
+	array = ARRAY 10 OF INTEGER;
+
+VAR
+	i: INTEGER;
+	r: array;
+
+PROCEDURE add(a, b: INTEGER) : INTEGER;
+	VAR
+		k: INTEGER;
+	BEGIN
+		k := i
+	RETURN a+b+k
+END add;
+
+PROCEDURE assign(ra: array; index, val: INTEGER);
+	BEGIN
+		ra[index] := val
+END assign;
+
+BEGIN
+	WRITE add(i , 2);
+	assign(3, r,  47)
+
+END addproc.
