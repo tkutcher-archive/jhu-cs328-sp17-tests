@@ -15,6 +15,6 @@ END sum;
 
 BEGIN
 	WRITE sum(18, 19, 20, 21, 22, 23, 24);
-	WRITE 1
+	WRITE 147
 
 END sumproc.
