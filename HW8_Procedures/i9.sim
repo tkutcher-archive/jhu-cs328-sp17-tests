@@ -20,12 +20,8 @@ VAR
 PROCEDURE swapRecord(record1, record2: R; array1: RA) : INTEGER;
 	BEGIN
 		record1 := record2;
-		record2.c := array1;
-		i := 3;
-		WRITE array1[i];
-		WRITE record2.a;
-		WRITE record2.c[i]
-	RETURN record2.c[i] (* -15 *)
+		record2.c := array1
+	RETURN record2.c[3] (* -15 *)
 END swapRecord;
 
 BEGIN

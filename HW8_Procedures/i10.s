@@ -15,19 +15,20 @@ blah:
 
 	@ WRITE Instruction
 	ldr	r7, [fp, #-8]
-	ldr	r5, [r9, #56]
-	cmp	r5, #4	@ bounds checking
+	ldr	r6, [r9, #56]
+	cmp	r6, #4	@ bounds checking
 	bhi	err
-	ldr	r6, =4
-	mul	r5, r5, r6	@ indexing
-	add	r5, r5, r7
-	ldr	r1, [r9, r5]
+	ldr	r4, =4
+	mul	r6, r6, r4	@ indexing
+	add	r6, r6, r7
+	ldr	r1, [r9, r6]
 	ldr	r0, =write
 	bl	printf
 
 	@ WRITE Instruction
 	ldr	r7, [fp, #-8]
-	ldr	r1, [r9, #11]
+	add	r7, r7, #12
+	ldr	r1, [r9, r7]
 	ldr	r0, =write
 	bl	printf
 

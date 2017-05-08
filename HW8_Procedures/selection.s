@@ -16,82 +16,82 @@ sortProc:
 	str	r8, [fp, #-20]
 	@ begin procedure instructions
 	@ IF Instruction
-	ldr	r8, [fp, #-20]
+	ldr	r8, [fp, #-16]
 	cmp	r8, #3
 	ldrlt	r8, =1
 	ldrge	r8, =0
 	cmp	r8, #1
 	bne	.L1_skipt
 	@ Repeat Instruction
-	ldr	r5, =0	@ comparison reg
+	ldr	r10, =0	@ comparison reg
 .L3_start:
-	cmp	r5, #0
+	cmp	r10, #0
 	bne	.L4_end
 	@ Assignment
-	ldr	r8, [fp, #-20]
-	str	r8, [fp, #-16]
+	ldr	r8, [fp, #-16]
+	str	r8, [fp, #-20]
 
 	@ Assignment
-	ldr	r8, [fp, #-20]
+	ldr	r8, [fp, #-16]
 	add	r8, r8, #1
-	str	r8, [fp, #-12]
+	str	r8, [fp, #-8]
 
 	@ IF Instruction
-	ldr	r8, [fp, #-12]
+	ldr	r8, [fp, #-8]
 	cmp	r8, #4
 	ldrlt	r8, =1
 	ldrge	r8, =0
 	cmp	r8, #1
 	bne	.L5_skipt
 	@ Repeat Instruction
-	ldr	r10, =0	@ comparison reg
+	ldr	r4, =0	@ comparison reg
 .L7_start:
-	cmp	r10, #0
+	cmp	r4, #0
 	bne	.L8_end
 	@ IF Instruction
 	ldr	r8, [fp, #-24]
-	ldr	r6, [fp, #-12]
-	cmp	r6, #3	@ bounds checking
+	ldr	r7, [fp, #-8]
+	cmp	r7, #3	@ bounds checking
 	bhi	err
-	ldr	r4, =4
-	mul	r6, r6, r4	@ indexing
-	add	r6, r6, r8
+	ldr	r5, =4
+	mul	r7, r7, r5	@ indexing
+	add	r7, r7, r8
 	ldr	r8, [fp, #-24]
-	ldr	r4, [fp, #-16]
-	cmp	r4, #3	@ bounds checking
+	ldr	r5, [fp, #-20]
+	cmp	r5, #3	@ bounds checking
 	bhi	err
-	ldr	r7, =4
-	mul	r4, r4, r7	@ indexing
-	add	r4, r4, r8
-	ldr	r8, [r9, r6]
-	ldr	r6, [r9, r4]
-	cmp	r8, r6
+	ldr	r6, =4
+	mul	r5, r5, r6	@ indexing
+	add	r5, r5, r8
+	ldr	r8, [r9, r7]
+	ldr	r7, [r9, r5]
+	cmp	r8, r7
 	ldrlt	r8, =1
 	ldrge	r8, =0
 	cmp	r8, #1
 	bne	.L9_skipt
 	@ Assignment
-	ldr	r8, [fp, #-12]
-	str	r8, [fp, #-16]
+	ldr	r8, [fp, #-8]
+	str	r8, [fp, #-20]
 
 	b	.L10_skipf
 .L9_skipt:
 .L10_skipf:
 
 	@ Assignment
-	ldr	r8, [fp, #-12]
+	ldr	r8, [fp, #-8]
 	add	r8, r8, #1
-	str	r8, [fp, #-12]
+	str	r8, [fp, #-8]
 
 	b	.L11_pool	@ literal pool
 .ltorg
 
 .L11_pool:
-	ldr	r8, [fp, #-12]
+	ldr	r8, [fp, #-8]
 	cmp	r8, #4
 	ldrge	r8, =1
 	ldrlt	r8, =0
-	mov	r10, r8	@ result
+	mov	r4, r8	@ result
 	b	.L7_start
 .L8_end:
 
@@ -100,52 +100,52 @@ sortProc:
 .L6_skipf:
 
 	@ IF Instruction
-	ldr	r8, [fp, #-16]
-	ldr	r10, [fp, #-20]
-	cmp	r8, r10
+	ldr	r8, [fp, #-20]
+	ldr	r4, [fp, #-16]
+	cmp	r8, r4
 	ldrne	r8, =1
 	ldreq	r8, =0
 	cmp	r8, #1
 	bne	.L12_skipt
 	@ Assignment
 	ldr	r8, [fp, #-24]
-	ldr	r10, [fp, #-20]
-	cmp	r10, #3	@ bounds checking
+	ldr	r4, [fp, #-16]
+	cmp	r4, #3	@ bounds checking
 	bhi	err
-	ldr	r6, =4
-	mul	r10, r10, r6	@ indexing
-	add	r10, r10, r8
-	ldr	r8, [r9, r10]
-	str	r8, [fp, #-8]
+	ldr	r7, =4
+	mul	r4, r4, r7	@ indexing
+	add	r4, r4, r8
+	ldr	r8, [r9, r4]
+	str	r8, [fp, #-12]
 
 	@ Assignment
 	ldr	r8, [fp, #-24]
-	ldr	r10, [fp, #-16]
-	cmp	r10, #3	@ bounds checking
+	ldr	r4, [fp, #-20]
+	cmp	r4, #3	@ bounds checking
 	bhi	err
-	ldr	r6, =4
-	mul	r10, r10, r6	@ indexing
-	add	r10, r10, r8
+	ldr	r7, =4
+	mul	r4, r4, r7	@ indexing
+	add	r4, r4, r8
 	ldr	r8, [fp, #-24]
-	ldr	r6, [fp, #-20]
-	cmp	r6, #3	@ bounds checking
+	ldr	r7, [fp, #-16]
+	cmp	r7, #3	@ bounds checking
 	bhi	err
-	ldr	r4, =4
-	mul	r6, r6, r4	@ indexing
-	add	r6, r6, r8
-	ldr	r8, [r9, r10]
-	str	r8, [r9, r6]
+	ldr	r5, =4
+	mul	r7, r7, r5	@ indexing
+	add	r7, r7, r8
+	ldr	r8, [r9, r4]
+	str	r8, [r9, r7]
 
 	@ Assignment
 	ldr	r8, [fp, #-24]
-	ldr	r10, [fp, #-16]
-	cmp	r10, #3	@ bounds checking
+	ldr	r4, [fp, #-20]
+	cmp	r4, #3	@ bounds checking
 	bhi	err
-	ldr	r6, =4
-	mul	r10, r10, r6	@ indexing
-	add	r10, r10, r8
-	ldr	r8, [fp, #-8]
-	str	r8, [r9, r10]
+	ldr	r7, =4
+	mul	r4, r4, r7	@ indexing
+	add	r4, r4, r8
+	ldr	r8, [fp, #-12]
+	str	r8, [r9, r4]
 
 	b	.L14_pool	@ literal pool
 .ltorg
@@ -156,15 +156,15 @@ sortProc:
 .L13_skipf:
 
 	@ Assignment
-	ldr	r8, [fp, #-20]
+	ldr	r8, [fp, #-16]
 	add	r8, r8, #1
-	str	r8, [fp, #-20]
+	str	r8, [fp, #-16]
 
-	ldr	r8, [fp, #-20]
+	ldr	r8, [fp, #-16]
 	cmp	r8, #3
 	ldrge	r8, =1
 	ldrlt	r8, =0
-	mov	r5, r8	@ result
+	mov	r10, r8	@ result
 	b	.L3_start
 .L4_end:
 
@@ -218,16 +218,16 @@ main:
 	cmp	r8, #1
 	bne	.L16_skipt
 	@ Repeat Instruction
-	ldr	r5, =0	@ comparison reg
+	ldr	r10, =0	@ comparison reg
 .L18_start:
-	cmp	r5, #0
+	cmp	r10, #0
 	bne	.L19_end
 	@ WRITE Instruction
 	ldr	r8, [r9, #0]
 	cmp	r8, #3	@ bounds checking
 	bhi	err
-	ldr	r10, =4
-	mul	r8, r8, r10	@ indexing
+	ldr	r4, =4
+	mul	r8, r8, r4	@ indexing
 	add	r8, r8, #4
 	ldr	r1, [r9, r8]
 	ldr	r0, =write
@@ -246,7 +246,7 @@ main:
 	cmp	r8, #4
 	ldrge	r8, =1
 	ldrlt	r8, =0
-	mov	r5, r8	@ result
+	mov	r10, r8	@ result
 	b	.L18_start
 .L19_end:
 

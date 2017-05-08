@@ -16,20 +16,20 @@ sum:
 	str	r10, [fp, #-8]
 	@ begin return expression
 	ldr	r10, [fp, #-12]
-	ldr	r7, [fp, #-16]
-	add	r10, r10, r7
-	ldr	r7, [fp, #-20]
-	add	r10, r10, r7
-	ldr	r7, [fp, #-24]
-	add	r10, r10, r7
-	ldr	r7, [fp, #8]
-	add	r10, r10, r7
-	ldr	r7, [fp, #12]
-	add	r10, r10, r7
-	ldr	r7, [fp, #16]
-	add	r10, r10, r7
-	ldr	r7, [fp, #-8]
-	add	r10, r10, r7
+	ldr	r8, [fp, #-16]
+	add	r10, r10, r8
+	ldr	r8, [fp, #-20]
+	add	r10, r10, r8
+	ldr	r8, [fp, #-24]
+	add	r10, r10, r8
+	ldr	r8, [fp, #8]
+	add	r10, r10, r8
+	ldr	r8, [fp, #12]
+	add	r10, r10, r8
+	ldr	r8, [fp, #16]
+	add	r10, r10, r8
+	ldr	r8, [fp, #-8]
+	add	r10, r10, r8
 	mov	r0, r10
 	ldmfd	sp!, {r4-r8, r10}	@ restore var registers
 	sub	sp, fp, #0
@@ -47,7 +47,7 @@ main:
 
 	@ WRITE Instruction
 	sub	sp, sp, #12
-	mov	r7, sp	@ copy of stack pointer
+	mov	r8, sp	@ copy of stack pointer
 	ldr	r0, =24
 	push	{r0}
 	ldr	r0, =23
@@ -63,12 +63,12 @@ main:
 	ldr	r0, =18
 	push	{r0}
 	pop	{r0, r1, r2, r3}
-	pop	{r6}
-	str	r6, [r7, #4]
-	pop	{r6}
-	str	r6, [r7, #8]
-	pop	{r6}
-	str	r6, [r7, #12]
+	pop	{r5}
+	str	r5, [r8, #4]
+	pop	{r5}
+	str	r5, [r8, #8]
+	pop	{r5}
+	str	r5, [r8, #12]
 	bl	sum
 	add	sp, sp, #12
 	mov	r1, r0

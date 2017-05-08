@@ -12,25 +12,25 @@ sum:
 	str	r2, [fp, #-20]
 	str	r3, [fp, #-24]
 	@ Initialize stack frame for locals
-	mov	r8, #0
-	str	r8, [fp, #-8]
+	mov	r5, #0
+	str	r5, [fp, #-8]
 	@ begin return expression
-	ldr	r8, [fp, #-12]
+	ldr	r5, [fp, #-12]
 	ldr	r4, [fp, #-16]
-	add	r8, r8, r4
+	add	r5, r5, r4
 	ldr	r4, [fp, #-20]
-	add	r8, r8, r4
+	add	r5, r5, r4
 	ldr	r4, [fp, #-24]
-	add	r8, r8, r4
+	add	r5, r5, r4
 	ldr	r4, [fp, #8]
-	add	r8, r8, r4
+	add	r5, r5, r4
 	ldr	r4, [fp, #12]
-	add	r8, r8, r4
+	add	r5, r5, r4
 	ldr	r4, [fp, #16]
-	add	r8, r8, r4
+	add	r5, r5, r4
 	ldr	r4, [fp, #-8]
-	add	r8, r8, r4
-	mov	r0, r8
+	add	r5, r5, r4
+	mov	r0, r5
 	ldmfd	sp!, {r4-r8, r10}	@ restore var registers
 	sub	sp, fp, #0
 	ldr	fp, [sp], #4
@@ -63,12 +63,12 @@ main:
 	ldr	r0, =7
 	push	{r0}
 	pop	{r0, r1, r2, r3}
-	pop	{r6}
-	str	r6, [r4, #4]
-	pop	{r6}
-	str	r6, [r4, #8]
-	pop	{r6}
-	str	r6, [r4, #12]
+	pop	{r8}
+	str	r8, [r4, #4]
+	pop	{r8}
+	str	r8, [r4, #8]
+	pop	{r8}
+	str	r8, [r4, #12]
 	bl	sum
 	add	sp, sp, #12
 	mov	r1, r0

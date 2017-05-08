@@ -8,17 +8,17 @@ getval:
 	sub	sp, sp, #12	@ local vars and r0-r3
 	stmfd	sp!, {r4-r8, r10}	@ save var registers
 	@ Initialize stack frame for locals
-	mov	r4, #0
-	str	r4, [fp, #-8]
-	str	r4, [fp, #-12]
+	mov	r5, #0
+	str	r5, [fp, #-8]
+	str	r5, [fp, #-12]
 	@ begin procedure instructions
 	@ Assignment
-	ldr	r4, =2
-	str	r4, [r9, #0]
+	ldr	r5, =2
+	str	r5, [r9, #0]
 
 	@ Assignment
-	ldr	r4, =1
-	str	r4, [fp, #-8]
+	ldr	r5, =1
+	str	r5, [fp, #-12]
 
 	@ begin return expression
 	ldr	r0, =47
