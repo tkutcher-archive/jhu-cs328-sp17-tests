@@ -1,0 +1,33 @@
+
+PROGRAM swap;
+
+TYPE
+	RA = ARRAY 5 OF INTEGER;
+
+	R = RECORD
+		a: INTEGER;
+		b: INTEGER;
+		c: RA;
+	END;
+
+VAR
+	i: INTEGER;
+	A: R;
+	B: R;
+	C: RA;
+
+
+PROCEDURE blah(array1: RA);
+	BEGIN
+		i := 3;
+		WRITE array1[i];
+		WRITE array1[3]
+END blah;
+
+BEGIN
+	C[0] := 13; C[1] := 14; C[2] := 14; C[3] := 14; C[4] := 14; 
+	blah(C);
+	WRITE C[3]; WRITE 14;
+	WRITE i; WRITE 3
+ 
+END swap.

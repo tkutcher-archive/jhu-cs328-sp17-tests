@@ -10,10 +10,10 @@ add:
 	str	r0, [fp, #-8]
 	str	r1, [fp, #-12]
 	@ begin return expression
-	ldr	r10, [fp, #-8]
-	ldr	r5, [fp, #-12]
-	add	r10, r10, r5
-	mov	r0, r10
+	ldr	r7, [fp, #-8]
+	ldr	r4, [fp, #-12]
+	add	r7, r7, r4
+	mov	r0, r7
 	ldmfd	sp!, {r4-r8, r10}	@ restore var registers
 	sub	sp, fp, #0
 	ldr	fp, [sp], #4
@@ -29,8 +29,8 @@ returnglobal:
 	str	r1, [fp, #-16]
 	str	r2, [fp, #-20]
 	@ Initialize stack frame for locals
-	mov	r5, #0
-	str	r5, [fp, #-8]
+	mov	r4, #0
+	str	r4, [fp, #-8]
 	@ begin procedure instructions
 	@ Assignment
 	ldr	r0, [fp, #-16]
@@ -42,10 +42,10 @@ returnglobal:
 	str	r0, [fp, #-8]
 
 	@ Assignment
-	ldr	r5, [fp, #-8]
-	ldr	r4, [fp, #-20]
-	add	r5, r5, r4
-	str	r5, [fp, #-8]
+	ldr	r4, [fp, #-8]
+	ldr	r5, [fp, #-20]
+	add	r4, r4, r5
+	str	r4, [fp, #-8]
 
 	@ begin return expression
 	ldr	r0, [r9, #0]
@@ -63,8 +63,8 @@ main:
 	ldr	r9, .MEM	@ base register
 
 	@ Assignment
-	ldr	r5, =262
-	str	r5, [r9, #0]
+	ldr	r4, =262
+	str	r4, [r9, #0]
 
 	@ WRITE Instruction
 	ldr	r0, =6

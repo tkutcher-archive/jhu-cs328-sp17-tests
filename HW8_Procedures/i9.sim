@@ -1,0 +1,64 @@
+
+PROGRAM swap;
+
+TYPE
+	RA = ARRAY 5 OF INTEGER;
+
+	R = RECORD
+		a: INTEGER;
+		b: INTEGER;
+		c: RA;
+	END;
+
+VAR
+	i: INTEGER;
+	A: R;
+	B: R;
+	C: RA;
+
+
+PROCEDURE swapRecord(record1, record2: R; array1: RA) : INTEGER;
+	BEGIN
+		record1 := record2;
+		record2.c := array1;
+		i := 3;
+		WRITE array1[i];
+		WRITE record2.a;
+		WRITE record2.c[i]
+	RETURN record2.c[i] (* -15 *)
+END swapRecord;
+
+BEGIN
+
+	A.a := 47;
+	A.b := 13;
+	A.c[0] := 23; A.c[1] := 23;
+
+	B.a := 99;
+	B.b := 157;
+	B.c[0] := 999; B.c[1] := 998; B.c[2] := 997; B.c[3] := 996; B.c[4] := 995; 
+
+	C[0] := -12; C[1] := -13; C[2] := -14; C[3] := -15; C[4] := -16;
+
+	WRITE swapRecord(A, B, C);
+	WRITE -15;
+
+	WRITE A.a; WRITE 99;
+	WRITE A.b; WRITE 157;
+
+	WRITE B.a; WRITE 99;
+	WRITE B.b; WRITE 157;
+
+	WRITE A.c[0]; WRITE 999;
+	WRITE A.c[1]; WRITE 998;
+	WRITE A.c[2]; WRITE 997;
+	WRITE A.c[3]; WRITE 996;
+	WRITE A.c[4]; WRITE 995;
+
+	WRITE B.c[0]; WRITE -12;
+	WRITE B.c[1]; WRITE -13;
+	WRITE B.c[2]; WRITE -14;
+	WRITE B.c[3]; WRITE -15;
+	WRITE B.c[4]; WRITE -16
+ 
+END swap.
