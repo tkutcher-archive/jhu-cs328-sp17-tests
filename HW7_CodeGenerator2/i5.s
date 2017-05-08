@@ -11,26 +11,26 @@ main:
 	ldr	r9, .MEM	@ base register
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #36]
+	ldr	r1, [r9, #16]
 	ldr	r0, =write
 	bl	printf
 
 	@ Assignment
-	ldr	r10, =18
-	str	r10, [r9, #40]
+	ldr	r7, =18
+	str	r7, [r9, #40]
 
 	@ Assignment
-	ldr	r10, [r9, #40]
-	str	r10, [r9, #32]
+	ldr	r7, [r9, #40]
+	str	r7, [r9, #36]
 
 	@ WRITE Instruction
-	ldr	r10, [r9, #36]
-	cmp	r10, #3	@ bounds checking
+	ldr	r7, [r9, #16]
+	cmp	r7, #3	@ bounds checking
 	bhi	err
-	ldr	r5, =4
-	mul	r10, r10, r5	@ indexing
-	add	r10, r10, #16
-	ldr	r1, [r9, r10]
+	ldr	r6, =4
+	mul	r7, r7, r6	@ indexing
+	add	r7, r7, #20
+	ldr	r1, [r9, r7]
 	ldr	r0, =write
 	bl	printf
 
@@ -44,28 +44,28 @@ main:
 
 .L1_pool:
 	@ Assignment
-	ldr	r10, [r9, #36]
-	cmp	r10, #3	@ bounds checking
+	ldr	r7, [r9, #16]
+	cmp	r7, #3	@ bounds checking
 	bhi	err
-	ldr	r5, =4
-	mul	r10, r10, r5	@ indexing
-	add	r10, r10, #16
-	ldr	r5, [r9, #32]
-	str	r5, [r9, r10]
+	ldr	r6, =4
+	mul	r7, r7, r6	@ indexing
+	add	r7, r7, #20
+	ldr	r6, [r9, #36]
+	str	r6, [r9, r7]
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #32]
+	ldr	r1, [r9, #36]
 	ldr	r0, =write
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r10, [r9, #36]
-	cmp	r10, #3	@ bounds checking
+	ldr	r7, [r9, #16]
+	cmp	r7, #3	@ bounds checking
 	bhi	err
-	ldr	r5, =4
-	mul	r10, r10, r5	@ indexing
-	add	r10, r10, #16
-	ldr	r1, [r9, r10]
+	ldr	r6, =4
+	mul	r7, r7, r6	@ indexing
+	add	r7, r7, #20
+	ldr	r1, [r9, r7]
 	ldr	r0, =write
 	bl	printf
 

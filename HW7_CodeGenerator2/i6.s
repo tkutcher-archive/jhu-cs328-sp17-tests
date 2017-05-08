@@ -11,18 +11,18 @@ main:
 	ldr	r9, .MEM	@ base register
 
 	@ Assignment
-	ldr	r8, =4
-	str	r8, [r9, #0]
+	ldr	r6, =4
+	str	r6, [r9, #40]
 
 	@ WRITE Instruction
 	ldr	r0, =6
-	ldr	r8, [r9, #0]
-	mov	r1, r8
+	ldr	r6, [r9, #40]
+	mov	r1, r6
 	cmp	r1, #0
 	beq	err	@ division by zero
 	bl	__aeabi_idivmod
-	mov	r8, r1
-	mov	r1, r8
+	mov	r6, r1
+	mov	r1, r6
 	ldr	r0, =write
 	bl	printf
 

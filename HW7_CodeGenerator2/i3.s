@@ -11,46 +11,38 @@ main:
 	ldr	r9, .MEM	@ base register
 
 	@ Assignment
-	ldr	r5, =0
-	str	r5, [r9, #48]
+	ldr	r8, =0
+	str	r8, [r9, #28]
 
 	@ IF Instruction
-	ldr	r5, [r9, #48]
-	cmp	r5, #5
-	ldrlt	r5, =1
-	ldrge	r5, =0
-	cmp	r5, #1
-	bne	.L1_skipt
+	ldr	r8, [r9, #28]
+	cmp	r8, #5
+	bge	.L1_skipt
 	@ Repeat Instruction
-	ldr	r8, =0	@ comparison reg
 .L3_start:
-	cmp	r8, #0
-	bne	.L4_end
 	@ Read
 	ldr	r0, =read
 	ldr	r1, =num
 	bl	scanf
-	ldr	r5, =num
-	ldr	r5, [r5]
-	ldr	r6, [r9, #48]
+	ldr	r8, =num
+	ldr	r8, [r8]
+	ldr	r6, [r9, #28]
 	cmp	r6, #4	@ bounds checking
 	bhi	err
-	ldr	r7, =4
-	mul	r6, r6, r7	@ indexing
-	add	r6, r6, #24
-	str	r5, [r9, r6]
+	ldr	r5, =4
+	mul	r6, r6, r5	@ indexing
+	add	r6, r6, #4
+	str	r8, [r9, r6]
 
 	@ Assignment
-	ldr	r5, [r9, #48]
-	add	r5, r5, #1
-	str	r5, [r9, #48]
+	ldr	r8, [r9, #28]
+	add	r8, r8, #1
+	str	r8, [r9, #28]
 
-	ldr	r5, [r9, #48]
-	cmp	r5, #5
-	ldrge	r5, =1
-	ldrlt	r5, =0
-	mov	r8, r5	@ result
-	b	.L3_start
+	ldr	r8, [r9, #28]
+	cmp	r8, #5
+	bge	.L4_end	@ comparison
+	b	.L3_start	@ repeat
 .L4_end:
 
 	b	.L2_skipf
@@ -62,123 +54,106 @@ main:
 
 .L5_pool:
 	@ Assignment
-	ldr	r5, =0
-	str	r5, [r9, #48]
+	ldr	r8, =0
+	str	r8, [r9, #28]
 
 	@ Assignment
-	ldr	r5, =5
-	str	r5, [r9, #44]
+	ldr	r8, =5
+	str	r8, [r9, #24]
 
 	@ IF Instruction
-	ldr	r5, [r9, #44]
-	cmp	r5, #0
-	ldrgt	r5, =1
-	ldrle	r5, =0
-	cmp	r5, #1
-	bne	.L6_skipt
-	@ Repeat Instruction
-	ldr	r8, =0	@ comparison reg
-.L8_start:
+	ldr	r8, [r9, #24]
 	cmp	r8, #0
-	bne	.L9_end
+	ble	.L6_skipt
+	@ Repeat Instruction
+.L8_start:
 	@ Assignment
-	ldr	r5, =0
-	str	r5, [r9, #48]
+	ldr	r8, =0
+	str	r8, [r9, #28]
 
 	@ IF Instruction
-	ldr	r5, [r9, #44]
-	sub	r5, r5, #1
-	ldr	r6, [r9, #48]
-	cmp	r6, r5
-	ldrlt	r6, =1
-	ldrge	r6, =0
-	cmp	r6, #1
-	bne	.L10_skipt
+	ldr	r8, [r9, #24]
+	sub	r8, r8, #1
+	ldr	r6, [r9, #28]
+	cmp	r6, r8
+	bge	.L10_skipt
 	@ Repeat Instruction
-	ldr	r5, =0	@ comparison reg
 .L12_start:
-	cmp	r5, #0
-	bne	.L13_end
 	@ IF Instruction
-	ldr	r6, [r9, #48]
-	cmp	r6, #4	@ bounds checking
+	ldr	r8, [r9, #28]
+	cmp	r8, #4	@ bounds checking
 	bhi	err
-	ldr	r7, =4
-	mul	r6, r6, r7	@ indexing
-	add	r6, r6, #24
-	ldr	r7, [r9, #48]
-	add	r7, r7, #1
-	cmp	r7, #4	@ bounds checking
-	bhi	err
-	ldr	r10, =4
-	mul	r7, r7, r10	@ indexing
-	add	r7, r7, #24
-	ldr	r10, [r9, r6]
-	ldr	r6, [r9, r7]
-	cmp	r10, r6
-	ldrgt	r10, =1
-	ldrle	r10, =0
-	cmp	r10, #1
-	bne	.L14_skipt
-	@ Assignment
-	ldr	r6, [r9, #48]
+	ldr	r6, =4
+	mul	r8, r8, r6	@ indexing
+	add	r8, r8, #4
+	ldr	r6, [r9, #28]
 	add	r6, r6, #1
 	cmp	r6, #4	@ bounds checking
 	bhi	err
-	ldr	r7, =4
-	mul	r6, r6, r7	@ indexing
-	add	r6, r6, #24
-	ldr	r7, [r9, r6]
-	str	r7, [r9, #0]
+	ldr	r5, =4
+	mul	r6, r6, r5	@ indexing
+	add	r6, r6, #4
+	ldr	r5, [r9, r8]
+	ldr	r8, [r9, r6]
+	cmp	r5, r8
+	ble	.L14_skipt
+	@ Assignment
+	ldr	r8, [r9, #28]
+	add	r8, r8, #1
+	cmp	r8, #4	@ bounds checking
+	bhi	err
+	ldr	r6, =4
+	mul	r8, r8, r6	@ indexing
+	add	r8, r8, #4
+	ldr	r6, [r9, r8]
+	str	r6, [r9, #0]
 
 	@ Assignment
-	ldr	r6, [r9, #48]
+	ldr	r8, [r9, #28]
+	cmp	r8, #4	@ bounds checking
+	bhi	err
+	ldr	r6, =4
+	mul	r8, r8, r6	@ indexing
+	add	r8, r8, #4
+	ldr	r6, [r9, #28]
+	add	r6, r6, #1
 	cmp	r6, #4	@ bounds checking
 	bhi	err
-	ldr	r7, =4
-	mul	r6, r6, r7	@ indexing
-	add	r6, r6, #24
-	ldr	r7, [r9, #48]
-	add	r7, r7, #1
-	cmp	r7, #4	@ bounds checking
-	bhi	err
-	ldr	r10, =4
-	mul	r7, r7, r10	@ indexing
-	add	r7, r7, #24
-	ldr	r10, [r9, r6]
-	str	r10, [r9, r7]
+	ldr	r5, =4
+	mul	r6, r6, r5	@ indexing
+	add	r6, r6, #4
+	ldr	r5, [r9, r8]
+	str	r5, [r9, r6]
 
 	b	.L16_pool	@ literal pool
 .ltorg
 
 .L16_pool:
 	@ Assignment
-	ldr	r6, [r9, #48]
-	cmp	r6, #4	@ bounds checking
+	ldr	r8, [r9, #28]
+	cmp	r8, #4	@ bounds checking
 	bhi	err
-	ldr	r7, =4
-	mul	r6, r6, r7	@ indexing
-	add	r6, r6, #24
-	ldr	r7, [r9, #0]
-	str	r7, [r9, r6]
+	ldr	r6, =4
+	mul	r8, r8, r6	@ indexing
+	add	r8, r8, #4
+	ldr	r6, [r9, #0]
+	str	r6, [r9, r8]
 
 	b	.L15_skipf
 .L14_skipt:
 .L15_skipf:
 
 	@ Assignment
-	ldr	r6, [r9, #48]
-	add	r6, r6, #1
-	str	r6, [r9, #48]
+	ldr	r8, [r9, #28]
+	add	r8, r8, #1
+	str	r8, [r9, #28]
 
-	ldr	r5, [r9, #44]
-	sub	r5, r5, #1
-	ldr	r6, [r9, #48]
-	cmp	r6, r5
-	ldrge	r6, =1
-	ldrlt	r6, =0
-	mov	r5, r6	@ result
-	b	.L12_start
+	ldr	r8, [r9, #24]
+	sub	r8, r8, #1
+	ldr	r6, [r9, #28]
+	cmp	r6, r8
+	bge	.L13_end	@ comparison
+	b	.L12_start	@ repeat
 .L13_end:
 
 	b	.L11_skipf
@@ -190,16 +165,14 @@ main:
 
 .L17_pool:
 	@ Assignment
-	ldr	r5, [r9, #44]
-	sub	r5, r5, #1
-	str	r5, [r9, #44]
+	ldr	r8, [r9, #24]
+	sub	r8, r8, #1
+	str	r8, [r9, #24]
 
-	ldr	r5, [r9, #44]
-	cmp	r5, #0
-	ldrle	r5, =1
-	ldrgt	r5, =0
-	mov	r8, r5	@ result
-	b	.L8_start
+	ldr	r8, [r9, #24]
+	cmp	r8, #0
+	ble	.L9_end	@ comparison
+	b	.L8_start	@ repeat
 .L9_end:
 
 	b	.L7_skipf
@@ -207,20 +180,20 @@ main:
 .L7_skipf:
 
 	@ Assignment
-	ldr	r5, =0
-	str	r5, [r9, #48]
+	ldr	r8, =0
+	str	r8, [r9, #28]
 
 	@ Assignment
-	ldr	r5, =24	@ from
-	ldr	r8, =4	@ to
-	add	r3, r5, #20	@ stop
+	ldr	r8, =4	@ from
+	ldr	r6, =32	@ to
+	add	r3, r8, #20	@ stop
 .L18_cpy_s:
-	cmp	r5, r3
+	cmp	r8, r3
 	beq	.L19_cpy_f
-	ldr	r6, [r9, r5]
-	str	r6, [r9, r8]
-	add	r5, r5, #4	@ ++from
-	add	r8, r8, #4	@ ++to
+	ldr	r5, [r9, r8]
+	str	r5, [r9, r6]
+	add	r8, r8, #4	@ ++from
+	add	r6, r6, #4	@ ++to
 	b	.L18_cpy_s
 .L19_cpy_f:
 
@@ -229,39 +202,31 @@ main:
 
 .L20_pool:
 	@ IF Instruction
-	ldr	r5, [r9, #48]
-	cmp	r5, #5
-	ldrlt	r5, =1
-	ldrge	r5, =0
-	cmp	r5, #1
-	bne	.L21_skipt
+	ldr	r8, [r9, #28]
+	cmp	r8, #5
+	bge	.L21_skipt
 	@ Repeat Instruction
-	ldr	r8, =0	@ comparison reg
 .L23_start:
-	cmp	r8, #0
-	bne	.L24_end
 	@ WRITE Instruction
-	ldr	r5, [r9, #48]
-	cmp	r5, #4	@ bounds checking
+	ldr	r8, [r9, #28]
+	cmp	r8, #4	@ bounds checking
 	bhi	err
 	ldr	r6, =4
-	mul	r5, r5, r6	@ indexing
-	add	r5, r5, #4
-	ldr	r1, [r9, r5]
+	mul	r8, r8, r6	@ indexing
+	add	r8, r8, #32
+	ldr	r1, [r9, r8]
 	ldr	r0, =write
 	bl	printf
 
 	@ Assignment
-	ldr	r5, [r9, #48]
-	add	r5, r5, #1
-	str	r5, [r9, #48]
+	ldr	r8, [r9, #28]
+	add	r8, r8, #1
+	str	r8, [r9, #28]
 
-	ldr	r5, [r9, #48]
-	cmp	r5, #5
-	ldrge	r5, =1
-	ldrlt	r5, =0
-	mov	r8, r5	@ result
-	b	.L23_start
+	ldr	r8, [r9, #28]
+	cmp	r8, #5
+	bge	.L24_end	@ comparison
+	b	.L23_start	@ repeat
 .L24_end:
 
 	b	.L22_skipf

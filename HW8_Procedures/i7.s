@@ -11,8 +11,8 @@ addthree:
 	str	r1, [fp, #-16]
 	str	r2, [fp, #-20]
 	@ Initialize stack frame for locals
-	mov	r8, #0
-	str	r8, [fp, #-8]
+	mov	r4, #0
+	str	r4, [fp, #-8]
 	@ begin procedure instructions
 	@ Assignment
 	ldr	r0, [fp, #-16]
@@ -24,10 +24,10 @@ addthree:
 	str	r0, [fp, #-8]
 
 	@ Assignment
-	ldr	r8, [fp, #-8]
+	ldr	r4, [fp, #-8]
 	ldr	r6, [fp, #-20]
-	add	r8, r8, r6
-	str	r8, [fp, #-8]
+	add	r4, r4, r6
+	str	r4, [fp, #-8]
 
 	@ begin return expression
 	ldr	r0, [fp, #-8]
@@ -44,10 +44,10 @@ add:
 	str	r0, [fp, #-8]
 	str	r1, [fp, #-12]
 	@ begin return expression
-	ldr	r8, [fp, #-8]
+	ldr	r4, [fp, #-8]
 	ldr	r6, [fp, #-12]
-	add	r8, r8, r6
-	mov	r0, r8
+	add	r4, r4, r6
+	mov	r0, r4
 	ldmfd	sp!, {r4-r8, r10}	@ restore var registers
 	sub	sp, fp, #0
 	ldr	fp, [sp], #4

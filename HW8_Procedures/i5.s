@@ -13,26 +13,26 @@ set:
 	str	r3, [fp, #-20]
 	@ begin procedure instructions
 	@ Assignment
-	ldr	r7, [fp, #-8]
-	ldr	r10, [fp, #-16]
-	cmp	r10, #9	@ bounds checking
+	ldr	r6, [fp, #-8]
+	ldr	r8, [fp, #-16]
+	cmp	r8, #9	@ bounds checking
 	bhi	err
-	ldr	r6, =4
-	mul	r10, r10, r6	@ indexing
-	add	r10, r10, r7
-	ldr	r7, [fp, #-20]
-	str	r7, [r9, r10]
+	ldr	r10, =4
+	mul	r8, r8, r10	@ indexing
+	add	r8, r8, r6
+	ldr	r6, [fp, #-20]
+	str	r6, [r9, r8]
 
 	@ Assignment
-	ldr	r7, [fp, #-12]
-	ldr	r10, [fp, #-16]
-	cmp	r10, #9	@ bounds checking
+	ldr	r6, [fp, #-12]
+	ldr	r8, [fp, #-16]
+	cmp	r8, #9	@ bounds checking
 	bhi	err
-	ldr	r6, =4
-	mul	r10, r10, r6	@ indexing
-	add	r10, r10, r7
-	ldr	r7, [fp, #-20]
-	str	r7, [r9, r10]
+	ldr	r10, =4
+	mul	r8, r8, r10	@ indexing
+	add	r8, r8, r6
+	ldr	r6, [fp, #-20]
+	str	r6, [r9, r8]
 
 	ldmfd	sp!, {r4-r8, r10}	@ restore var registers
 	sub	sp, fp, #0
@@ -52,27 +52,27 @@ main:
 	ldr	r0, =read
 	ldr	r1, =num
 	bl	scanf
-	ldr	r7, =num
-	ldr	r7, [r7]
-	str	r7, [r9, #80]
+	ldr	r6, =num
+	ldr	r6, [r6]
+	str	r6, [r9, #0]
 
-	ldr	r0, [r9, #80]
+	ldr	r0, [r9, #0]
 	push	{r0}
 	ldr	r0, =1
 	push	{r0}
-	ldr	r0, =40	@ load address
+	ldr	r0, =4	@ load address
 	push	{r0}
-	ldr	r0, =0	@ load address
+	ldr	r0, =44	@ load address
 	push	{r0}
 	pop	{r0, r1, r2, r3}
 	bl	set
 	@ WRITE Instruction
-	ldr	r1, [r9, #0]
+	ldr	r1, [r9, #44]
 	ldr	r0, =write
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #4]
+	ldr	r1, [r9, #48]
 	ldr	r0, =write
 	bl	printf
 
@@ -81,10 +81,34 @@ main:
 
 .L1_pool:
 	@ WRITE Instruction
+	ldr	r1, [r9, #52]
+	ldr	r0, =write
+	bl	printf
+
+	@ WRITE Instruction
+	ldr	r1, [r9, #56]
+	ldr	r0, =write
+	bl	printf
+
+	@ WRITE Instruction
+	ldr	r1, [r9, #60]
+	ldr	r0, =write
+	bl	printf
+
+	@ WRITE Instruction
+	ldr	r1, [r9, #4]
+	ldr	r0, =write
+	bl	printf
+
+	@ WRITE Instruction
 	ldr	r1, [r9, #8]
 	ldr	r0, =write
 	bl	printf
 
+	b	.L2_pool	@ literal pool
+.ltorg
+
+.L2_pool:
 	@ WRITE Instruction
 	ldr	r1, [r9, #12]
 	ldr	r0, =write
@@ -96,31 +120,7 @@ main:
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #40]
-	ldr	r0, =write
-	bl	printf
-
-	@ WRITE Instruction
-	ldr	r1, [r9, #44]
-	ldr	r0, =write
-	bl	printf
-
-	b	.L2_pool	@ literal pool
-.ltorg
-
-.L2_pool:
-	@ WRITE Instruction
-	ldr	r1, [r9, #48]
-	ldr	r0, =write
-	bl	printf
-
-	@ WRITE Instruction
-	ldr	r1, [r9, #52]
-	ldr	r0, =write
-	bl	printf
-
-	@ WRITE Instruction
-	ldr	r1, [r9, #56]
+	ldr	r1, [r9, #20]
 	ldr	r0, =write
 	bl	printf
 

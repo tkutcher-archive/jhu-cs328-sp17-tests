@@ -12,25 +12,25 @@ sum:
 	str	r2, [fp, #-20]
 	str	r3, [fp, #-24]
 	@ Initialize stack frame for locals
-	mov	r5, #0
-	str	r5, [fp, #-8]
+	mov	r10, #0
+	str	r10, [fp, #-8]
 	@ begin return expression
-	ldr	r5, [fp, #-12]
+	ldr	r10, [fp, #-12]
 	ldr	r4, [fp, #-16]
-	add	r5, r5, r4
+	add	r10, r10, r4
 	ldr	r4, [fp, #-20]
-	add	r5, r5, r4
+	add	r10, r10, r4
 	ldr	r4, [fp, #-24]
-	add	r5, r5, r4
+	add	r10, r10, r4
 	ldr	r4, [fp, #8]
-	add	r5, r5, r4
+	add	r10, r10, r4
 	ldr	r4, [fp, #12]
-	add	r5, r5, r4
+	add	r10, r10, r4
 	ldr	r4, [fp, #16]
-	add	r5, r5, r4
+	add	r10, r10, r4
 	ldr	r4, [fp, #-8]
-	add	r5, r5, r4
-	mov	r0, r5
+	add	r10, r10, r4
+	mov	r0, r10
 	ldmfd	sp!, {r4-r8, r10}	@ restore var registers
 	sub	sp, fp, #0
 	ldr	fp, [sp], #4

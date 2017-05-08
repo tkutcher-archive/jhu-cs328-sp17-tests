@@ -14,23 +14,17 @@ main:
 	ldr	r0, =read
 	ldr	r1, =num
 	bl	scanf
-	ldr	r7, =num
-	ldr	r7, [r7]
-	str	r7, [r9, #12]
+	ldr	r5, =num
+	ldr	r5, [r5]
+	str	r5, [r9, #8]
 
 	@ IF Instruction
-	ldr	r7, [r9, #12]
-	cmp	r7, #0
-	ldrle	r7, =1
-	ldrgt	r7, =0
-	cmp	r7, #1
-	bne	.L1_skipt
+	ldr	r5, [r9, #8]
+	cmp	r5, #0
+	bgt	.L1_skipt
 	@ IF Instruction
-	ldr	r7, [r9, #12]
-	cmp	r7, #0
-	ldreq	r7, =1
-	ldrne	r7, =0
-	cmp	r7, #1
+	ldr	r5, [r9, #8]
+	cmp	r5, #0
 	bne	.L3_skipt
 	@ WRITE Instruction
 	ldr	r1, =0
@@ -49,68 +43,59 @@ main:
 	b	.L2_skipf
 .L1_skipt:
 	@ Assignment
-	ldr	r7, =1
-	str	r7, [r9, #0]
+	ldr	r5, =1
+	str	r5, [r9, #0]
 
 	b	.L5_pool	@ literal pool
 .ltorg
 
 .L5_pool:
 	@ Repeat Instruction
-	ldr	r5, =0	@ comparison reg
 .L6_start:
-	cmp	r5, #0
-	bne	.L7_end
 	@ Assignment
-	ldr	r7, [r9, #0]
-	str	r7, [r9, #4]
+	ldr	r5, [r9, #0]
+	str	r5, [r9, #12]
 
 	@ Assignment
-	ldr	r7, [r9, #12]
-	ldr	r8, [r9, #4]
-	mov	r0, r7
-	mov	r1, r8
+	ldr	r5, [r9, #8]
+	ldr	r4, [r9, #12]
+	mov	r0, r5
+	mov	r1, r4
 	cmp	r1, #0
 	beq	err	@ division by zero
 	bl	__aeabi_idiv
-	mov	r7, r0
-	ldr	r8, [r9, #4]
-	add	r8, r8, r7
+	mov	r5, r0
+	ldr	r4, [r9, #12]
+	add	r4, r4, r5
 	ldr	r1, =2
-	mov	r0, r8
+	mov	r0, r4
 	cmp	r1, #0
 	beq	err	@ division by zero
 	bl	__aeabi_idiv
-	mov	r8, r0
-	str	r8, [r9, #0]
+	mov	r4, r0
+	str	r4, [r9, #0]
 
 	@ Assignment
-	ldr	r7, [r9, #0]
-	ldr	r8, [r9, #4]
-	sub	r7, r7, r8
-	str	r7, [r9, #8]
+	ldr	r5, [r9, #0]
+	ldr	r4, [r9, #12]
+	sub	r5, r5, r4
+	str	r5, [r9, #4]
 
 	@ IF Instruction
-	ldr	r7, [r9, #8]
-	cmp	r7, #1
-	ldreq	r7, =1
-	ldrne	r7, =0
-	cmp	r7, #1
+	ldr	r5, [r9, #4]
+	cmp	r5, #1
 	bne	.L8_skipt
 	@ IF Instruction
-	ldr	r7, [r9, #12]
-	cmp	r7, #4
-	ldrgt	r7, =1
-	ldrle	r7, =0
-	cmp	r7, #1
-	bne	.L10_skipt
+	ldr	r5, [r9, #8]
+	cmp	r5, #4
+	ble	.L10_skipt
 	@ Assignment
-	ldr	r7, =0
-	str	r7, [r9, #8]
+	ldr	r5, =0
+	str	r5, [r9, #4]
 
 	@ Assignment
-	ldr	r7, [r9, #4]
-	str	r7, [r9, #0]
+	ldr	r5, [r9, #12]
+	str	r5, [r9, #0]
 
 	b	.L12_pool	@ literal pool
 .ltorg
@@ -119,19 +104,16 @@ main:
 	b	.L11_skipf
 .L10_skipt:
 	@ IF Instruction
-	ldr	r7, [r9, #12]
-	cmp	r7, #3
-	ldreq	r7, =1
-	ldrne	r7, =0
-	cmp	r7, #1
+	ldr	r5, [r9, #8]
+	cmp	r5, #3
 	bne	.L13_skipt
 	@ Assignment
-	ldr	r7, =0
-	str	r7, [r9, #8]
+	ldr	r5, =0
+	str	r5, [r9, #4]
 
 	@ Assignment
-	ldr	r7, =1
-	str	r7, [r9, #0]
+	ldr	r5, =1
+	str	r5, [r9, #0]
 
 	b	.L14_skipf
 .L13_skipt:
@@ -147,12 +129,10 @@ main:
 .ltorg
 
 .L15_pool:
-	ldr	r7, [r9, #8]
-	cmp	r7, #0
-	ldreq	r7, =1
-	ldrne	r7, =0
-	mov	r5, r7	@ result
-	b	.L6_start
+	ldr	r5, [r9, #4]
+	cmp	r5, #0
+	beq	.L7_end	@ comparison
+	b	.L6_start	@ repeat
 .L7_end:
 
 	@ WRITE Instruction

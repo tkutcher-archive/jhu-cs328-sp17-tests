@@ -15,9 +15,6 @@ fact:
 	@ IF Instruction
 	ldr	r5, [fp, #-12]
 	cmp	r5, #0
-	ldreq	r5, =1
-	ldrne	r5, =0
-	cmp	r5, #1
 	bne	.L1_skipt
 	@ Assignment
 	ldr	r5, =1

@@ -8,28 +8,28 @@ blah:
 	sub	sp, sp, #8	@ local vars and r0-r3
 	stmfd	sp!, {r4-r8, r10}	@ save var registers
 	@ Initialize stack frame for locals
-	mov	r8, #0
-	str	r8, [fp, #-8]
+	mov	r4, #0
+	str	r4, [fp, #-8]
 	@ begin procedure instructions
 	@ Assignment
-	ldr	r8, =16
-	str	r8, [fp, #-8]
+	ldr	r4, =16
+	str	r4, [fp, #-8]
 
 	@ Assignment
-	ldr	r8, [fp, #-8]
+	ldr	r4, [fp, #-8]
 	ldr	r1, =9
-	mov	r0, r8
+	mov	r0, r4
 	cmp	r1, #0
 	beq	err	@ division by zero
 	bl	__aeabi_idivmod
-	mov	r8, r1
-	str	r8, [fp, #-8]
+	mov	r4, r1
+	str	r4, [fp, #-8]
 
 	@ begin return expression
-	ldr	r8, [fp, #-8]
-	ldr	r10, =2
-	mul	r8, r8, r10
-	mov	r0, r8
+	ldr	r4, [fp, #-8]
+	ldr	r7, =2
+	mul	r4, r4, r7
+	mov	r0, r4
 	ldmfd	sp!, {r4-r8, r10}	@ restore var registers
 	sub	sp, fp, #4
 	ldmfd	sp!, {fp, pc}	@ return
@@ -45,10 +45,10 @@ main:
 
 	@ Assignment
 	bl	blah
-	str	r0, [r9, #0]
+	str	r0, [r9, #40]
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #0]
+	ldr	r1, [r9, #40]
 	ldr	r0, =write
 	bl	printf
 

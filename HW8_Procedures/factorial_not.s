@@ -1,37 +1,41 @@
 	.text
-	.comm	pgmem,80,4
+	.comm	pgmem,0,4
 
 	.align	2
-blah:
+fact:
 	stmfd	sp!, {fp, lr}	@ caller
 	add	fp, sp, #4
 	sub	sp, sp, #8	@ local vars and r0-r3
 	stmfd	sp!, {r4-r8, r10}	@ save var registers
 	str	r0, [fp, #-8]
+	@ Initialize stack frame for locals
+	mov	r5, #0
+	str	r5, [fp, #-4]
 	@ begin procedure instructions
+	@ IF Instruction
+	ldr	r5, [fp, #-8]
+	cmp	r5, #0
+	bne	.L1_skipt
 	@ Assignment
-	ldr	r8, =3
-	str	r8, [r9, #48]
+	ldr	r5, =1
+	str	r5, [fp, #-4]
 
-	@ WRITE Instruction
-	ldr	r8, [fp, #-8]
-	ldr	r7, [r9, #48]
-	cmp	r7, #4	@ bounds checking
-	bhi	err
-	ldr	r6, =4
-	mul	r7, r7, r6	@ indexing
-	add	r7, r7, r8
-	ldr	r1, [r9, r7]
-	ldr	r0, =write
-	bl	printf
+	b	.L2_skipf
+.L1_skipt:
+	@ Assignment
+	ldr	r5, [fp, #-8]
+	sub	r5, r5, #1
+	push	{r5}
+	pop	{r0}
+	bl	fact
+	ldr	r5, [fp, #-8]
+	mul	r5, r5, r0
+	str	r5, [fp, #-4]
 
-	@ WRITE Instruction
-	ldr	r8, [fp, #-8]
-	add	r8, r8, #12
-	ldr	r1, [r9, r8]
-	ldr	r0, =write
-	bl	printf
+.L2_skipf:
 
+	@ begin return expression
+	ldr	r0, [fp, #-4]
 	ldmfd	sp!, {r4-r8, r10}	@ restore var registers
 	sub	sp, fp, #4
 	ldmfd	sp!, {fp, pc}	@ return
@@ -45,55 +49,43 @@ main:
 
 	ldr	r9, .MEM	@ base register
 
-	@ Assignment
-	ldr	r8, =13
-	str	r8, [r9, #28]
-
-	@ Assignment
-	ldr	r8, =14
-	str	r8, [r9, #32]
-
-	b	.L1_pool	@ literal pool
-.ltorg
-
-.L1_pool:
-	@ Assignment
-	ldr	r8, =14
-	str	r8, [r9, #36]
-
-	@ Assignment
-	ldr	r8, =14
-	str	r8, [r9, #40]
-
-	@ Assignment
-	ldr	r8, =14
-	str	r8, [r9, #44]
-
-	ldr	r0, =28	@ load address
+	@ WRITE Instruction
+	ldr	r0, =6
 	push	{r0}
 	pop	{r0}
-	bl	blah
-	@ WRITE Instruction
-	ldr	r1, [r9, #40]
+	bl	fact
+	mov	r1, r0
 	ldr	r0, =write
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, =14
+	ldr	r0, =4
+	push	{r0}
+	pop	{r0}
+	bl	fact
+	mov	r1, r0
 	ldr	r0, =write
 	bl	printf
 
-	b	.L2_pool	@ literal pool
+	b	.L3_pool	@ literal pool
 .ltorg
 
-.L2_pool:
+.L3_pool:
 	@ WRITE Instruction
-	ldr	r1, [r9, #48]
+	ldr	r0, =2
+	push	{r0}
+	pop	{r0}
+	bl	fact
+	mov	r1, r0
 	ldr	r0, =write
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, =3
+	ldr	r0, =0
+	push	{r0}
+	pop	{r0}
+	bl	fact
+	mov	r1, r0
 	ldr	r0, =write
 	bl	printf
 

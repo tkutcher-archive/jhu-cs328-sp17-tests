@@ -25,27 +25,19 @@ main:
 	ldr	r0, =read
 	ldr	r1, =num
 	bl	scanf
-	ldr	r8, =num
-	ldr	r8, [r8]
-	str	r8, [r9, #44]
+	ldr	r5, =num
+	ldr	r5, [r5]
+	str	r5, [r9, #0]
 
 	@ IF Instruction
-	ldr	r5, =308
-	ldr	r8, [r9, r5]
-	ldr	r5, [r9, #44]
-	cmp	r8, r5
-	ldrlt	r8, =1
-	ldrge	r8, =0
-	cmp	r8, #1
-	bne	.L5_skipt
+	ldr	r5, [r9, #4]
+	ldr	r4, [r9, #0]
+	cmp	r5, r4
+	bge	.L5_skipt
 	@ Repeat Instruction
-	ldr	r5, =0	@ comparison reg
 .L7_start:
-	cmp	r5, #0
-	bne	.L8_end
 	@ WRITE Instruction
-	ldr	r8, =308
-	ldr	r1, [r9, r8]
+	ldr	r1, [r9, #4]
 	ldr	r0, =write
 	bl	printf
 
@@ -54,20 +46,15 @@ main:
 
 .L9_pool:
 	@ Assignment
-	ldr	r10, =308
-	ldr	r8, [r9, r10]
-	add	r8, r8, #1
-	ldr	r10, =308
-	str	r8, [r9, r10]
+	ldr	r5, [r9, #4]
+	add	r5, r5, #1
+	str	r5, [r9, #4]
 
-	ldr	r5, =308
-	ldr	r8, [r9, r5]
-	ldr	r5, [r9, #44]
-	cmp	r8, r5
-	ldrge	r8, =1
-	ldrlt	r8, =0
-	mov	r5, r8	@ result
-	b	.L7_start
+	ldr	r5, [r9, #4]
+	ldr	r4, [r9, #0]
+	cmp	r5, r4
+	bge	.L8_end	@ comparison
+	b	.L7_start	@ repeat
 .L8_end:
 
 	b	.L6_skipf

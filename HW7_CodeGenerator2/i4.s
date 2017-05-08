@@ -26,8 +26,8 @@ main:
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r8, =412
-	ldr	r1, [r9, r8]
+	ldr	r6, =996
+	ldr	r1, [r9, r6]
 	ldr	r0, =write
 	bl	printf
 
@@ -35,10 +35,10 @@ main:
 	ldr	r0, =read
 	ldr	r1, =num
 	bl	scanf
-	ldr	r8, =num
-	ldr	r8, [r8]
-	ldr	r5, =1156
-	str	r8, [r9, r5]
+	ldr	r6, =num
+	ldr	r6, [r6]
+	ldr	r4, =1160
+	str	r6, [r9, r4]
 
 	b	.L1_pool	@ literal pool
 .ltorg
@@ -48,67 +48,65 @@ main:
 	ldr	r0, =read
 	ldr	r1, =num
 	bl	scanf
-	ldr	r8, =num
-	ldr	r8, [r8]
-	ldr	r5, =576
-	str	r8, [r9, r5]
+	ldr	r6, =num
+	ldr	r6, [r6]
+	ldr	r4, =580
+	str	r6, [r9, r4]
 
 	@ Read
 	ldr	r0, =read
 	ldr	r1, =num
 	bl	scanf
-	ldr	r8, =num
-	ldr	r8, [r8]
-	ldr	r5, =1160
-	str	r8, [r9, r5]
+	ldr	r6, =num
+	ldr	r6, [r6]
+	str	r6, [r9, #0]
 
 	@ Read
 	ldr	r0, =read
 	ldr	r1, =num
 	bl	scanf
-	ldr	r8, =num
-	ldr	r8, [r8]
-	ldr	r7, =1156
-	ldr	r5, [r9, r7]
-	cmp	r5, #3	@ bounds checking
+	ldr	r6, =num
+	ldr	r6, [r6]
+	ldr	r7, =1160
+	ldr	r4, [r9, r7]
+	cmp	r4, #3	@ bounds checking
 	bhi	err
 	ldr	r7, =144
-	mul	r5, r5, r7	@ indexing
-	add	r5, r5, #0
-	ldr	r6, =576
-	ldr	r7, [r9, r6]
+	mul	r4, r4, r7	@ indexing
+	add	r4, r4, #584
+	ldr	r10, =580
+	ldr	r7, [r9, r10]
 	cmp	r7, #5	@ bounds checking
 	bhi	err
-	ldr	r6, =24
-	mul	r7, r7, r6	@ indexing
-	add	r7, r7, r5
-	ldr	r6, =1160
-	ldr	r5, [r9, r6]
-	cmp	r5, #5	@ bounds checking
+	ldr	r10, =24
+	mul	r7, r7, r10	@ indexing
+	add	r7, r7, r4
+	ldr	r4, [r9, #0]
+	cmp	r4, #5	@ bounds checking
 	bhi	err
-	ldr	r6, =4
-	mul	r5, r5, r6	@ indexing
-	add	r5, r5, r7
-	str	r8, [r9, r5]
+	ldr	r10, =4
+	mul	r4, r4, r10	@ indexing
+	add	r4, r4, r7
+	str	r6, [r9, r4]
 
 	@ WRITE Instruction
-	ldr	r8, =412
-	ldr	r1, [r9, r8]
+	ldr	r6, =996
+	ldr	r1, [r9, r6]
 	ldr	r0, =write
 	bl	printf
 
 	@ Assignment
-	ldr	r8, =0	@ from
-	ldr	r5, =580	@ to
+	ldr	r6, =584	@ from
+	ldr	r4, =4	@ to
 	ldr	r3, =576
-	add	r3, r8, r3	@ stop
+	add	r3, r6, r3	@ stop
 .L2_cpy_s:
-	cmp	r8, r3
+	cmp	r6, r3
 	beq	.L3_cpy_f
-	ldr	r7, [r9, r8]
-	str	r7, [r9, r5]
-	add	r8, r8, #4	@ ++from
-	add	r5, r5, #4	@ ++to
+	ldr	r7, [r9, r6]
+	str	r7, [r9, r4]
+	add	r6, r6, #4	@ ++from
+	add	r4, r4, #4	@ ++to
 	b	.L2_cpy_s
 .L3_cpy_f:
 
@@ -117,54 +115,52 @@ main:
 
 .L4_pool:
 	@ WRITE Instruction
-	ldr	r5, =1156
-	ldr	r8, [r9, r5]
-	cmp	r8, #3	@ bounds checking
+	ldr	r4, =1160
+	ldr	r6, [r9, r4]
+	cmp	r6, #3	@ bounds checking
 	bhi	err
-	ldr	r5, =144
-	mul	r8, r8, r5	@ indexing
-	add	r8, r8, #580
-	ldr	r7, =576
-	ldr	r5, [r9, r7]
-	cmp	r5, #5	@ bounds checking
+	ldr	r4, =144
+	mul	r6, r6, r4	@ indexing
+	add	r6, r6, #4
+	ldr	r7, =580
+	ldr	r4, [r9, r7]
+	cmp	r4, #5	@ bounds checking
 	bhi	err
 	ldr	r7, =24
-	mul	r5, r5, r7	@ indexing
-	add	r5, r5, r8
-	ldr	r7, =1160
-	ldr	r8, [r9, r7]
-	cmp	r8, #5	@ bounds checking
+	mul	r4, r4, r7	@ indexing
+	add	r4, r4, r6
+	ldr	r6, [r9, #0]
+	cmp	r6, #5	@ bounds checking
 	bhi	err
 	ldr	r7, =4
-	mul	r8, r8, r7	@ indexing
-	add	r8, r8, r5
-	ldr	r1, [r9, r8]
+	mul	r6, r6, r7	@ indexing
+	add	r6, r6, r4
+	ldr	r1, [r9, r6]
 	ldr	r0, =write
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r5, =1156
-	ldr	r8, [r9, r5]
-	cmp	r8, #3	@ bounds checking
+	ldr	r4, =1160
+	ldr	r6, [r9, r4]
+	cmp	r6, #3	@ bounds checking
 	bhi	err
-	ldr	r5, =144
-	mul	r8, r8, r5	@ indexing
-	add	r8, r8, #0
-	ldr	r7, =576
-	ldr	r5, [r9, r7]
-	cmp	r5, #5	@ bounds checking
+	ldr	r4, =144
+	mul	r6, r6, r4	@ indexing
+	add	r6, r6, #584
+	ldr	r7, =580
+	ldr	r4, [r9, r7]
+	cmp	r4, #5	@ bounds checking
 	bhi	err
 	ldr	r7, =24
-	mul	r5, r5, r7	@ indexing
-	add	r5, r5, r8
-	ldr	r7, =1160
-	ldr	r8, [r9, r7]
-	cmp	r8, #5	@ bounds checking
+	mul	r4, r4, r7	@ indexing
+	add	r4, r4, r6
+	ldr	r6, [r9, #0]
+	cmp	r6, #5	@ bounds checking
 	bhi	err
 	ldr	r7, =4
-	mul	r8, r8, r7	@ indexing
-	add	r8, r8, r5
-	ldr	r1, [r9, r8]
+	mul	r6, r6, r7	@ indexing
+	add	r6, r6, r4
+	ldr	r1, [r9, r6]
 	ldr	r0, =write
 	bl	printf
 

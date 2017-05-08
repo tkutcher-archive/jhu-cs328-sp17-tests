@@ -12,39 +12,39 @@ swapRecord:
 	str	r2, [fp, #-16]
 	@ begin procedure instructions
 	@ Assignment
-	ldr	r10, [fp, #-12]
-	ldr	r4, [fp, #-8]
-	add	r3, r10, #28	@ stop
+	ldr	r6, [fp, #-12]
+	ldr	r8, [fp, #-8]
+	add	r3, r6, #28	@ stop
 .L1_cpy_s:
-	cmp	r10, r3
+	cmp	r6, r3
 	beq	.L2_cpy_f
-	ldr	r7, [r9, r10]
-	str	r7, [r9, r4]
-	add	r10, r10, #4	@ ++from
-	add	r4, r4, #4	@ ++to
+	ldr	r7, [r9, r6]
+	str	r7, [r9, r8]
+	add	r6, r6, #4	@ ++from
+	add	r8, r8, #4	@ ++to
 	b	.L1_cpy_s
 .L2_cpy_f:
 
 	@ Assignment
-	ldr	r10, [fp, #-16]
-	ldr	r4, [fp, #-12]
-	add	r4, r4, #8
-	add	r3, r10, #20	@ stop
+	ldr	r6, [fp, #-16]
+	ldr	r8, [fp, #-12]
+	add	r8, r8, #4
+	add	r3, r6, #20	@ stop
 .L3_cpy_s:
-	cmp	r10, r3
+	cmp	r6, r3
 	beq	.L4_cpy_f
-	ldr	r7, [r9, r10]
-	str	r7, [r9, r4]
-	add	r10, r10, #4	@ ++from
-	add	r4, r4, #4	@ ++to
+	ldr	r7, [r9, r6]
+	str	r7, [r9, r8]
+	add	r6, r6, #4	@ ++from
+	add	r8, r8, #4	@ ++to
 	b	.L3_cpy_s
 .L4_cpy_f:
 
 	@ begin return expression
-	ldr	r10, [fp, #-12]
-	add	r10, r10, #8
-	add	r10, r10, #12
-	ldr	r0, [r9, r10]
+	ldr	r6, [fp, #-12]
+	add	r6, r6, #4
+	add	r6, r6, #12
+	ldr	r0, [r9, r6]
 	ldmfd	sp!, {r4-r8, r10}	@ restore var registers
 	sub	sp, fp, #0
 	ldr	fp, [sp], #4
@@ -60,87 +60,87 @@ main:
 	ldr	r9, .MEM	@ base register
 
 	@ Assignment
-	ldr	r10, =47
-	str	r10, [r9, #0]
+	ldr	r6, =47
+	str	r6, [r9, #52]
 
 	@ Assignment
-	ldr	r10, =13
-	str	r10, [r9, #4]
+	ldr	r6, =13
+	str	r6, [r9, #76]
 
 	@ Assignment
-	ldr	r10, =23
-	str	r10, [r9, #8]
+	ldr	r6, =23
+	str	r6, [r9, #56]
 
 	b	.L5_pool	@ literal pool
 .ltorg
 
 .L5_pool:
 	@ Assignment
-	ldr	r10, =23
-	str	r10, [r9, #12]
+	ldr	r6, =23
+	str	r6, [r9, #60]
 
 	@ Assignment
-	ldr	r10, =99
-	str	r10, [r9, #48]
+	ldr	r6, =99
+	str	r6, [r9, #24]
 
 	@ Assignment
-	ldr	r10, =157
-	str	r10, [r9, #52]
+	ldr	r6, =157
+	str	r6, [r9, #48]
 
 	@ Assignment
-	ldr	r10, =999
-	str	r10, [r9, #56]
+	ldr	r6, =999
+	str	r6, [r9, #28]
 
 	@ Assignment
-	ldr	r10, =998
-	str	r10, [r9, #60]
+	ldr	r6, =998
+	str	r6, [r9, #32]
 
 	b	.L6_pool	@ literal pool
 .ltorg
 
 .L6_pool:
 	@ Assignment
-	ldr	r10, =997
-	str	r10, [r9, #64]
+	ldr	r6, =997
+	str	r6, [r9, #36]
 
 	@ Assignment
-	ldr	r10, =996
-	str	r10, [r9, #68]
+	ldr	r6, =996
+	str	r6, [r9, #40]
 
 	@ Assignment
-	ldr	r10, =995
-	str	r10, [r9, #72]
+	ldr	r6, =995
+	str	r6, [r9, #44]
 
 	@ Assignment
-	ldr	r10, =-12
-	str	r10, [r9, #28]
+	ldr	r6, =-12
+	str	r6, [r9, #0]
 
 	@ Assignment
-	ldr	r10, =-13
-	str	r10, [r9, #32]
+	ldr	r6, =-13
+	str	r6, [r9, #4]
 
 	b	.L7_pool	@ literal pool
 .ltorg
 
 .L7_pool:
 	@ Assignment
-	ldr	r10, =-14
-	str	r10, [r9, #36]
+	ldr	r6, =-14
+	str	r6, [r9, #8]
 
 	@ Assignment
-	ldr	r10, =-15
-	str	r10, [r9, #40]
+	ldr	r6, =-15
+	str	r6, [r9, #12]
 
 	@ Assignment
-	ldr	r10, =-16
-	str	r10, [r9, #44]
+	ldr	r6, =-16
+	str	r6, [r9, #16]
 
 	@ WRITE Instruction
-	ldr	r0, =28	@ load address
-	push	{r0}
-	ldr	r0, =48	@ load address
-	push	{r0}
 	ldr	r0, =0	@ load address
+	push	{r0}
+	ldr	r0, =24	@ load address
+	push	{r0}
+	ldr	r0, =52	@ load address
 	push	{r0}
 	pop	{r0, r1, r2}
 	bl	swapRecord
@@ -158,7 +158,7 @@ main:
 
 .L8_pool:
 	@ WRITE Instruction
-	ldr	r1, [r9, #0]
+	ldr	r1, [r9, #52]
 	ldr	r0, =write
 	bl	printf
 
@@ -168,7 +168,7 @@ main:
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #4]
+	ldr	r1, [r9, #76]
 	ldr	r0, =write
 	bl	printf
 
@@ -178,7 +178,7 @@ main:
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #48]
+	ldr	r1, [r9, #24]
 	ldr	r0, =write
 	bl	printf
 
@@ -192,7 +192,7 @@ main:
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #52]
+	ldr	r1, [r9, #48]
 	ldr	r0, =write
 	bl	printf
 
@@ -202,7 +202,7 @@ main:
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #8]
+	ldr	r1, [r9, #56]
 	ldr	r0, =write
 	bl	printf
 
@@ -216,7 +216,7 @@ main:
 
 .L10_pool:
 	@ WRITE Instruction
-	ldr	r1, [r9, #12]
+	ldr	r1, [r9, #60]
 	ldr	r0, =write
 	bl	printf
 
@@ -226,7 +226,7 @@ main:
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #16]
+	ldr	r1, [r9, #64]
 	ldr	r0, =write
 	bl	printf
 
@@ -236,7 +236,7 @@ main:
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #20]
+	ldr	r1, [r9, #68]
 	ldr	r0, =write
 	bl	printf
 
@@ -250,7 +250,7 @@ main:
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #24]
+	ldr	r1, [r9, #72]
 	ldr	r0, =write
 	bl	printf
 
@@ -260,7 +260,7 @@ main:
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #56]
+	ldr	r1, [r9, #28]
 	ldr	r0, =write
 	bl	printf
 
@@ -274,7 +274,7 @@ main:
 
 .L12_pool:
 	@ WRITE Instruction
-	ldr	r1, [r9, #60]
+	ldr	r1, [r9, #32]
 	ldr	r0, =write
 	bl	printf
 
@@ -284,7 +284,7 @@ main:
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #64]
+	ldr	r1, [r9, #36]
 	ldr	r0, =write
 	bl	printf
 
@@ -294,7 +294,7 @@ main:
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #68]
+	ldr	r1, [r9, #40]
 	ldr	r0, =write
 	bl	printf
 
@@ -308,7 +308,7 @@ main:
 	bl	printf
 
 	@ WRITE Instruction
-	ldr	r1, [r9, #72]
+	ldr	r1, [r9, #44]
 	ldr	r0, =write
 	bl	printf
 
